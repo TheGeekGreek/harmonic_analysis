@@ -1,0 +1,389 @@
+\section{The Complex Method}
+This theorem will unfortunately only be applicable to linear operators but will yield a more natural bound of the operator on the intermediate space. The proof will make strong use of complex variables technique. A major tool will be an application of the maximum modulus principle, known as \emph{Hadamard's three lines lemma}.
+
+\subsection{Hadamard's Three Lines Lemma}
+The proof of the Riesz-Thorin interpolation theorem heavily relies on Hadamard's three lines lemma which is itself based on a restatement of the maximum modulus theorem (see \cite[212]{rudin:rc_analysis:1987}) found in \cite[253]{rudin:rc_analysis:1987}. To do so, we have first to establish some common terminology. A complex-valued function $f$ is said to be \emph{holomorphic} in $\Omega \subseteq \mathbb{C}$ open, if $f'\del{z}$ exists for any $z \in \Omega$. By a region we shall mean a nonempty connected open subset of the complex plane. The restatement reads as follows.
+
+\begin{theorem*}
+	Let $\Omega \subseteq \mathbb{C}$ be a bounded region and $f$ be a continuous function on $\overline{\Omega}$ which is holomorphic in $\Omega$. Then 
+
+	\begin{equation*}
+		\abs[0]{f\del{z}} \leq \sup\cbr[0]{ \abs[0]{f\del{z}} : z \in \partial\Omega}
+	\end{equation*}
+
+	\noindent for every $z \in \Omega$. If equality holds at one point $z \in \Omega$, then $f$ is constant.
+\end{theorem*}
+
+\begin{mdframed}
+	\begin{lemma}\emph{(Hadamard's three lines lemma)}
+		Let $F$ be a holomorphic function in the strip $S := \{z \in \mathbb{C}: 0 < \Re z < 1\}$, continuous and bounded on $\overline{S}$, such that $\left| F(z)\right| \leq B_0$ when $\Re z = 0$ and $\left| F(z) \right| \leq B_1$ when $\Re z = 1$, for some $0 < B_0,B_1 < \infty$. Then $\left| F(z) \right| \leq B_0^{1 - \theta}B_1^\theta$ when $\Re z = \theta$, for any $0 < \theta < 1$.
+		\label{lem:HTL}
+	\end{lemma}
+\end{mdframed}
+
+\begin{figure}[h!tb]
+	\centering
+	\begin{tikzpicture}
+		\draw [line width = .5mm] (0,-3.5)--(0,3.5);
+		\draw [line width = .5mm] (1,-3.5)--(1,3.5);
+		\draw [line width = .5mm] (4,-3.5)--(4,3.5);
+		\draw (-1,0)--(5,0);
+		\fill [pattern = adjusted lines, pattern color = black, line width = .2mm] (0,-3.5) rectangle (4,3.5);
+		\node (0) at (-.25,-.25) {$0$};
+		\node (1) at (4.25,-.25) {$1$};
+		\node (T) at (1.25,-.25) {$\theta$};
+		\node (RR) at (4.7,3) {$\mathbb{R} \times \mathbb{R}$};
+	\end{tikzpicture}	
+	\caption{Sketch of the setting of Hadamard's three lines lemma.}
+	\label{fig:Hadamards_three_lines_lemma}
+\end{figure}
+
+\begin{proof}
+For $z \in \overline{S}$ define 
+
+\begin{equation*}
+	G(z) := \frac{F(z)}{B_0^{1 - z}B_1^z} \qquad G_n(z) := G(z) e^{\left(z^2 - 1\right)/n},~n \in\mathbb{N}_{>0}
+\end{equation*}
+
+$G(z)$ and $G_n(z)$ are holomorphic in $S$ by
+	
+\begin{equation*}
+	G'(z) = \frac{F'(z) - F(z)\log\left( B_1/B_0 \right)}{B_0^{1 - z}B_1^z} \qquad G_n'(z) = G'(z)e^{\left( z^2 - 1 \right)/n} + \frac{2}{n}zG_n(z)	
+\end{equation*}
+
+\noindent and $e^z \neq 0$ for every $z \in \mathbb{C}$. Further, we have
+
+\begin{equation*}
+		\left| B_0^{1 - z}B_1^z \right| = \left(B_0^{1 - z}B_0^{1 - \overline{z}} B_1^z B_1^{\overline{z}}\right)^{1/2} =  B_0^{1 -\Re z}B_1^{\Re z}
+\end{equation*}
+
+Consider $0 \leq \Re z \leq 1$ and $B_0 \geq 1$. Then $B_0^{1 - \Re z} \geq 1$ and $B_0^{1 - \Re z } \geq B_0$ in the case $B_0 < 1$. Similarily, $B_1^{\Re z} \geq 1$ if $B_1 \geq 1$ and $B_1^{\Re z} \leq B_1$ if $B_1 < 1$. Hence 
+
+\begin{equation}
+	\left| B_0^{1 - z}B_1^z \right| \geq \min\left\{1,B_0\right\}\min\left\{1,B_1\right\} > 0
+	\label{est:denom}
+\end{equation}
+
+\noindent for all $z \in \overline{S}$. Since $F$ is bounded on $\overline{S}$, we have $\left| F(z) \right| \leq L$ for some $L > 0$ and all $z \in \overline{S}$. Thus by (\ref{est:denom})
+
+\begin{equation*}
+	\left| G(z)\right| = \frac{\left| F(z)\right|}{\left| B_0^{1 - z}B_1^z \right|} \leq \frac{L}{\min\left\{1,B_0\right\}\min\left\{1,B_1\right\}} =: M
+\end{equation*}
+
+\noindent for every $z \in \overline{S}$. Fix $n \in \mathbb{N}_{>0}$ and write $z := x + iy \in \overline{S}$. Then
+
+\begin{gather*}
+	\left| G_n(z)\right| \leq M \left(e^{\left(x^2 + 2ixy -y^2 - 1\right)/n} e^{\left(x^2 - 2ixy -y^2 - 1\right)/n}\right)^{1/2}= M e^{-y^2/n}e^{\left(x^2 - 1\right)/n} \leq Me^{-y^2/n}
+\end{gather*}
+
+\noindent for $0 \leq x \leq 1$. Thus
+	
+\begin{equation*}
+	\lim_{y \to \pm \infty}\sup\{\left| G_n(z)\right| : 0 \leq x \leq 1\} = 0
+\end{equation*}
+
+\noindent by the pinching-principle. Hence there exist $C_0(n),C_1(n) \in \mathbb{R}$, such that 
+
+\begin{equation*}
+	\sup\{\left| G_n(z)\right| : 0 \leq x \leq 1\} \leq 1
+\end{equation*}
+
+\noindent when $y > C_0(n)$ or $y < C_1(n)$. Letting
+
+\begin{equation*}
+	C(n) := \max\left\{ \left| C_0(n)\right| + 1, \left| C_1(n) \right| + 1\right\}
+\end{equation*}
+
+\begin{figure}[h!tb]
+	\centering
+	\begin{tikzpicture}
+		\draw (0,-3.5)--(0,3.5);
+		\draw (4,-3.5)--(4,3.5);
+		\draw (-1,0)--(5,0);
+		\draw [pattern = adjusted lines, pattern color = black, line width = .5mm] (0,-2.5) rectangle (4,2.5);
+		\node (0) at (-.25,-.25) {$0$};
+		\node (1) at (4.25,-.25) {$1$};
+		\node (R) at (.5,2) {$\overline{R}$};
+		\node (Cn) at (-.5,2.5) {$C(n)$};
+		\node (-Cn) at (-.65,-2.5) {$-C(n)$};
+		\node (RR) at (4.7,3) {$\mathbb{R} \times \mathbb{R}$};
+	\end{tikzpicture}	
+	\caption{Sketch of the rectangle $\overline{R}$.}
+	\label{fig:Hadamards_three_lines_lemma_proof}
+\end{figure}
+
+\noindent we conclude $\left| G_n(z) \right| \leq 1$ for all $0 \leq x \leq 1$ when $\left| y \right| \geq C(n)$. Now consider the rectangle $R := \left(0,1\right) \times \left(-C(n),C(n)\right)$. We have $\left| G_n(z) \right| \leq 1$ on the lines $[0,1] \times \{\pm C(n)\}$. By
+
+\begin{equation*}
+	\left| G_n(iy)\right| = \frac{\left| F(iy)\right|}{\left| B_0^{1 - iy} B_1^{iy}\right|}e^{-\left( y^2 + 1 \right)/n} \leq 1 \qquad \left| G_n(1 + iy)\right| =	\frac{\left| F(1 + iy)\right|}{\left| B_0^{-iy}B_1^{1 + iy}\right|}e^{-y^2/n} \leq 1
+\end{equation*}
+
+\noindent we have $\left| G_n(z)\right| \leq 1$ on the lines $\{0\} \times [-C(n),C(n)]$, $\{1\} \times [-C(n),C(n)]$. Thus $\left| G_n(z) \right| \leq 1$ on $\partial R$. Since $\left| G_n(z)\right|$ is continuous on $\overline{R}$, holomorphic in $R$ and $R$ is a bounded region, the maximum modulus theorem implies
+
+\begin{equation*}
+	\left| G_n(z)\right| \leq \sup\left\{ \left|G_n(z) \right| : z \in \partial R \right\} \leq 1
+\end{equation*}
+
+\noindent for every $z \in R$. Therefore $\left| G_n(z) \right| \leq 1$ on $\overline{R}$ and so $\left| G_n(z) \right| \leq 1$ on $\overline{S}$. Since inequalities are preserved by limits and the modulus is a continuous function, we have that $\left| G(z) \right| = \lim_{n \to \infty} \left| G_n(z) \right| \leq 1$ for $z \in \overline{S}$. We conclude by 
+
+\begin{equation*}
+	\left| F(\theta + it) \right| = \left| G(\theta + it) \right| | B_0^{1 - \theta - it}B_1^{\theta + it}| \leq B_0^{1 - \theta} B_1^{\theta}
+\end{equation*}
+
+\noindent whenever $0 < \theta < 1$, $t \in \mathbb{R}$.
+\end{proof}
+
+\subsection{The Riesz-Thorin Interpolation Theorem}
+For two measure spaces $\left( X,\mu \right)$, $\left( Y,\nu \right)$ let $\Sigma_X$ and $\Sigma_Y$ denote the set of all finitely simple functions on $X$, $Y$ respectively.
+
+\vspace{2mm}
+
+\begin{mdframed}
+	\begin{theorem}\emph{(Riesz-Thorin interpolation theorem)}
+		Suppose that $(X,\mu)$, $(Y,\nu)$ are measure spaces and $1 \leq p_0,p_1,q_0,q_1 \leq \infty$. If $q_0 = q_1 = \infty$, suppose also that $\nu$ is semifinite. Let $T$ be a linear operator defined on $\Sigma_X$ and taking values in the set of measurable functions on $Y$, such that for some $0 < M_0,M_1 < \infty$ the estimates 
+
+		\begin{equation}
+			\left\|T(f)\right\|_{L^{q_0}} \leq M_0\left\|f\right\|_{L^{p_0}} \quad \text{and} \quad \left\|T(f)\right\|_{L^{q_1}} \leq M_1\left\|f\right\|_{L^{p_1}}
+			\label{hyp:Lq0Lq1}
+		\end{equation}
+
+		\noindent hold for all $f \in \Sigma_X$. Then for all $0 \leq \theta \leq 1$ we have
+
+		\begin{equation}
+			\left\|T(f)\right\|_{L^q} \leq M_0^{1 - \theta}M_1^\theta\left\|f\right\|_{L^p}
+			\label{est:boundTf}
+		\end{equation}
+
+		\noindent for all $f \in \Sigma_X$, where
+
+		\begin{equation*}
+			\frac{1}{p} = \frac{1 - \theta}{p_0} + \frac{\theta}{p_1} \quad \text{and} \quad \frac{1}{q} = \frac{1 - \theta}{q_0} + \frac{\theta}{q_1}.
+		\end{equation*}
+		\label{thm:Riesz_Thorin}
+	\end{theorem}
+\end{mdframed}
+
+\begin{proof}
+	The idea is to bound the quantity (see \cite[189]{folland:real_analysis:1999})
+	
+	\begin{equation*}
+		M_q\left( T(f) \right) = \sup\left\{ \left| \int_Y T(f)g \d \nu\right| : g \in \Sigma_Y, \left\| g\right\|_{L^{q'}} = 1\right\}
+	\end{equation*}
+
+	\noindent appropriately. If either $\theta = 0$ or $\theta = 1$, the estimate (\ref{est:boundTf}) follows directly from the hypotheses (\ref{hyp:Lq0Lq1}) on $T$. Thus we may assume \underline{$0 < \theta < 1$}. Furthermore, if $f \in \Sigma_X$, $\left\| f \right\|_{L^p} = 0$, then $f = 0$ $\mu$-a.e. and either one of the hypotheses on $T$ in (\ref{hyp:Lq0Lq1}) implies $T(f) = 0$ $\mu$-a.e. and thus the estimate (\ref{est:boundTf}) holds trivially. Therefore we can assume \underline{$\left\| f\right\|_{L^p} \neq 0$}. Fix $f \in \Sigma_X$, $g \in \Sigma_Y$ with representation
+	
+\begin{equation*}
+	f = \sum_{j = 1}^n a_j e^{i\alpha_j}\chi_{A_j} \qquad g = \sum_{k = 1}^m b_k e^{i\beta_k}\chi_{B_k}
+\end{equation*}
+
+\noindent where $a_j,b_k \neq 0$, $\alpha_j,\beta_k \in \mathbb{R}$ for any $j = 1,\dots,n$, $k = 1,\dots,m$, the sets $A_j$ and $B_k$ are each pairwise disjoint with $\mu\left( A_j \right),\nu\left( B_k \right) < \infty$ and so, that $\left\| g\right\|_{L^{q'}} \neq 0$ (recall $q' := q/\left( q - 1 \right)$). Define
+
+\begin{equation*}
+	P(z) := \frac{p}{p_0}(1 - z) + \frac{p}{p_1}z \qquad Q(z) := \frac{q'}{q'_0}(1 - z) + \frac{q'}{q'_1}z
+\end{equation*}
+
+\noindent for $z \in \mathbb{C}$ (since either $p = \infty$ implies $p_0 = p_1 = \infty$ or $q = 1$ implies $q_0 = q_1 = 1$, the functions $P$, $Q$ are well-defined). Further let
+				
+\begin{equation}
+	f_z := \sum_{j = 1}^n a^{P(z)}_j e^{i\alpha_j}\chi_{A_j} \qquad g_z :=  \sum_{k = 1}^m b^{Q(z)}_k e^{i\beta_k}\chi_{B_k}
+	\label{eq:def_fzgz}
+\end{equation}
+				
+\noindent and 
+
+\begin{equation}
+	F(z) := \int_Y T(f_z)g_z\d\nu
+	\label{eq:def_F}
+\end{equation}
+
+By (\ref{eq:def_fzgz}), (\ref{eq:def_F}) and the linearity of the operator $T$ we have
+
+\begin{gather*}
+	F(z) = \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_j b_k^{Q(z)} e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu
+\end{gather*}
+
+Applying H\"older's inequality yields
+
+\begin{equation}
+	\begin{aligned}
+		\left| \int_YT(\chi_{A_j})\chi_{B_k}\d\nu \right| &\leq \int_Y\left| T(\chi_{A_j})\chi_{B_k}\right|\d\nu\\
+		&= \norm[0]{T(\chi_{A_j})\chi_{B_k}}_{L^1}\\
+		&\leq \norm[0]{T\del[0]{\chi_{A_j}}}_{L^{q_0}} \norm[0]{\chi_{B_k}}_{L^{q_0'}}\\
+		&\leq M_0\norm[0]{\chi_{A_j}}_{L^{p_0}} \norm[0]{\chi_{B_k}}_{L^{q_0'}}\\
+		&\leq M_0 \mu\del[0]{A_j}^{1/p_0}\nu\del[0]{B_k}^{1/q_0'}
+		\label{est:constant_F}		
+	\end{aligned}
+\end{equation}
+
+\noindent for each $j = 1,\hdots,n$, $k = 1,\hdots,m$ (even in the cases where either $p_0 = \infty$ or $q_0' = \infty$, or both, by observing that $\left\| \chi_{A}\right\|_{L^\infty} \leq 1$ for any measurable set $A$). Thus the function $F$ is well-defined on $\mathbb{C}$. Let $t \in \mathbb{R}$. For $p,p_0 \neq \infty$
+
+\begin{gather*}
+	\begin{aligned}
+		\left\|f_{it}\right\|_{L^{p_0}} &= \left(\sum_{j = 1}^n \int_{A_j} \left| f_{it} \right|^{p_0} \d\mu + \int_{X \setminus \bigcup_{j = 1}^n A_j} \left| f_{it} \right|^{p_0} \d\mu\right)^{1/p_0}\\
+		&= \left(\sum_{j = 1}^n \left| a_j^{P(it)} e^{i\alpha_j}\right|^{p_0}\int_X \chi_{A_j} \d\mu\right)^{1/p_0}\\
+		&= \left(\sum_{j = 1}^n a_j^{p_0\Re P(it)}\mu\left(A_j\right)\right)^{1/p_0}\\
+		&= \left(\sum_{j = 1}^n a_j^p\mu\left(A_j\right)\right)^{p/\left(p_0p\right)}\\
+		&= \left\|f\right\|_{L^p}^{p/p_0} 
+	\end{aligned}
+\end{gather*}
+
+\noindent holds. Let $p_0 = \infty$, $p \neq \infty$. Then $\left\|f_{it}\right\|_{L^{\infty}} = 1$ since $\left| a_j^{P(it)}\right| = a_j^{p/p_0} = 1$ and that there exists some index $j$, such that $\mu\left( A_j \right) \neq 0$. If $p = \infty$, then $p_0 = p_1 = \infty$ and thus $P(it) = 1$. By the same considerations we have $\|g_{it}\|_{L^{q_0'}} = \|g\|_{L^{q'}}^{q'/q'_0}$. Hence
+
+\begin{gather*}
+	\begin{aligned}
+		\left| F(it) \right| &\leq \int_Y \left| T(f_{it})g_{it}\right| \d\nu\\
+		&= \left\|T(f_{it}) g_{it}\right\|_{L^1}\\
+		&\leq \left\|T(f_{it})\right\|_{L^{q_0}}\left\|g_{it}\right\|_{L^{q_0'}}\\
+		&\leq M_0 \left\|f_{it}\right\|_{L^{p_0}} \left\|g_{it}\right\|_{L^{q_0'}}\\
+		&= M_0 \left\|f\right\|_{L^p}^{p/p_0} \left\|g\right\|_{L^{q'}}^{q'/q'_0}
+	\end{aligned}
+\end{gather*}
+
+\noindent by H\"older's inequality. In an analogous manner we derive
+				
+\begin{equation*}
+	\left\|f_{1 + it}\right\|_{L^{p_1}} = \left\|f\right\|_{L^p}^{p/p_1} \qquad \left\|g_{1 + it}\right\|_{L^{q_1'}} = \left\|g\right\|_{L^{q'}}^{q'/q_1'}
+\end{equation*}
+
+\noindent and thus 
+				
+\begin{equation*}
+	\left| F(1 + it)\right| \leq M_1 \left\|f\right\|_{L^p}^{p/p_1}\left\|g\right\|_{L^{q'}}^{q'/q_1'}
+\end{equation*}	
+
+Further by estimate (\ref{est:constant_F}) 
+
+\begin{equation*}
+	\begin{aligned}
+		\left| F(z)\right| &\leq \sum_{j = 1}^n\sum_{k = 1}^m \left| a_j^{P(z)}\right| \left| b_k^{Q(z)}\right| \left| \int_Y T(\chi_{A_j})\chi_{B_k} \d\nu\right|\\
+		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m a_j^{\Re P(z)}b_k^{\Re Q(z)}\mu\left(A_j\right)^{1/p_0}\nu\left(B_k\right)^{1/q_0'}\\
+		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m \max\left\{ 1, a_j^{p/p_0 + p/p_1}\right\} \max\left\{1,b_k^{q'/q_0' + q'/q_1'}\right\}\mu\left(A_j\right)^{1/p_0}\nu\left(B_k\right)^{1/q_0'}
+	\end{aligned}
+\end{equation*}
+
+
+Hence $F$ is bounded on $\overline{S}$ by some constant depending on $f$ and $g$ only. By 
+
+\begin{multline*}
+	F'(z) = \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_j\log \left( a_j \right) \left( \frac{p}{p_1} - \frac{p}{p_0} \right) b_k^{Q(z)}e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu \\
+	+  \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_jb_k^{Q(z)}\log\left( b_k \right)\left( \frac{q'}{q'_1} - \frac{q'}{q'_0} \right)e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu 
+\end{multline*}
+
+\noindent it is immediate, that $F$ is an entire function and thus holomorphic in $S$ and continuous on $\overline{S}$. Therefore, Hadamard's three lines lemma yields
+
+\begin{gather*}
+	\left| F(z) \right| \leq \left( M_0  \left\|f\right\|_{L^p}^{p/p_0} \left\|g\right\|_{L^{q'}}^{q'/q'_0} \right)^{1 - \theta}\left(  M_1 \left\|f\right\|_{L^p}^{p/p_1}\left\|g\right\|_{L^{q'}}^{q'/q_1'} \right)^\theta = M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}\left\|g\right\|_{L^{q'}}
+\end{gather*}
+
+\noindent for $\Re z = \theta$, $0 < \theta < 1$. We have
+
+\begin{equation*}
+	\left\{ T(f) \neq 0\right\} = \bigcup_{n = 1}^\infty \left\{ \left| T(f)\right| > 1/n\right\}
+\end{equation*}
+
+\noindent and by Chebychev's inequality either
+
+\begin{equation*}
+	\nu\left( \left\{ \left| T(f)\right| > 1/n\right\} \right) \leq n^{q_0}\left\| T(f)\right\|_{L^{q_0}}^{q_0} \leq n^{q_0}M_0^{q_0}\left\| f\right\|_{L^{p_0}}^{q_0}
+\end{equation*}
+
+\noindent or
+
+\begin{equation*}
+	\nu\left( \left\{ \left| T(f)\right| > 1/n\right\} \right) \leq n^{q_1}\left\| T(f)\right\|_{L^{q_1}}^{q_1} \leq  n^{q_1}M_1^{q_1}\left\| f\right\|_{L^{p_1}}^{q_1}
+\end{equation*}
+
+\noindent whenever $q_0 \neq \infty$ or $q_1 \neq \infty$. Therefore, the set $\left\{ T(f) \neq 0\right\}$ is $\sigma$-finite unless $q_0 = q_1 = \infty$. Further we have $P(\theta) = Q(\theta) = 1$. Thus by
+
+\begin{gather*}
+	\begin{aligned}
+		M_q\left( T(f) \right) &= \sup\left\{\left| \int_Y T(f)g\d\nu\right| : g \in \Sigma_Y, \left\|g\right\|_{L^{q'}} = 1\right\}\\
+		&=  \sup\left\{\left| F(\theta)\right| : g \in \Sigma_Y, \left\|g\right\|_{L^{q'}} = 1\right\}\\
+		&\leq M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}\\
+	\end{aligned}
+\end{gather*}
+
+\noindent we conclude 
+	
+\begin{equation*}
+	\left\| T(f)\right\|_{L^q} = M_q\left( T(f) \right) \leq M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}
+\end{equation*}
+	
+\noindent for any $f \in \Sigma_X$.
+\end{proof}
+
+\begin{remark}
+	A more general version of the Riesz-Thorin interpolation theorem can be found in \textup{\cite[200--202]{folland:real_analysis:1999}}. There, a linear map $T: L^{p_0} + L^{p_1} \rightarrow L^{q_0} + L^{q_1}$ is considered. This follows using a density argument from the current version of the theorem and will not be prooven here.
+	\label{rem:extension}
+\end{remark}
+
+\begin{remark}
+	Using the previous remark, a standard application of the Riesz-Thorin interpolation theorem is to prove Young's inequality for convolutions \textup{\cite[22--23]{grafakos:fourier:2014}}. Let $G$ be a locally compact group and $\lambda$ be a left invariant Haar measure on $G$, furthermore we assume that $G$ is a countable union of compact subsets, hence the pair $\left( G,\lambda \right)$ forms a $\sigma$-finite measure space.
+
+\begin{theorem*}\emph{(Young's inequality)}
+	Let $1 \leq p,q,r \leq \infty$ satisfy
+
+	\begin{equation}
+		\frac{1}{q} + 1 = \frac{1}{p} + \frac{1}{r}
+		\label{hyp:young}
+	\end{equation}
+
+	Then for all $f \in L^p\left( G \right)$, $g \in L^r\left( G \right)$
+	satisfying $\norm{g}_{L^r} = \norm{\tilde{g}}$ we have $f \ast g$ exists $\lambda$-a.e. and satisfies
+
+	\begin{equation*}
+		\norm{f \ast g}_{L^1} \leq \norm{g}_{L^r} \norm{f}_{L^p}
+	\end{equation*}
+\end{theorem*}
+	
+\begin{proof}
+	Fix $g \in L^r\left( G \right)$ and let $T(f) := f \ast g$ be defined on $L^1\left( G \right) + L^{r'}\left( G \right)$. Obviously, $T$ is a linear operator by the linearity of the integral. By Minkowski's integral inequality (see exercise \textbf{1.1.6} \cite[13]{grafakos:fourier:2014}) we get
+
+	\begin{equation*}
+		\begin{aligned}
+			\|T(f)\|_{L^r} &= \left(\int_G \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert^r d\lambda(x)\right)^{1/r}\\
+			&\leq \int_G \left( \int_G \vert f(y) \vert^r \vert g(y^{-1}x) \vert^r d\lambda(x)\right)^{1/r} d\lambda(y)\\
+			&= \int_G \vert f(y) \vert \left( \int_G \vert g(y^{-1}x) \vert^r d\lambda(y^{-1}x) \right)^{1/r} d\lambda(y)\\
+			&= \int_G \vert f(y) \vert \left( \int_G \vert g(z) \vert^r d\lambda(z) \right)^{1/r} d\lambda(y)\\
+			&\leq \|f\|_{L^1} \|g\|_{L^r}
+		\end{aligned} 
+	\end{equation*}
+
+	for $f \in L^1(g,\mu)$ and $1 \leqslant p < \infty$. The case $r = \infty$ follows from
+	
+	\begin{equation*}
+		\vert (f \ast g)(x) \vert = \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert \leq \int_G \vert f(y)\vert \vert g(y^{-1}x)\vert d\lambda(y) \leq \|g\|_{L^\infty}\|f\|_{L^1}
+	\end{equation*}
+	
+	By stipulating $h(y) := g(y^{-1}x)$ we have 
+
+	\begin{equation*}
+		\begin{aligned}
+			\abs{(f \ast g)(x)} &= \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert \leq \int_G \vert f(y)g(y^{-1}x)\vert d\lambda(y)\\
+			&= \|fh\|_{L^1} \leq \|f\|_{L^{r'}} \|h\|_{L^r} = \|f\|_{L^{r'}} \|\tilde{g}\|_{L^r} = \|g\|_{L^r} \|f\|_{L^{r'}}
+		\end{aligned}
+	\end{equation*}
+
+	for $r < \infty$ and $f \in L^{r'}\left( G \right)$, since
+
+	\begin{equation*}
+		\|h\|^r_{L^r} = \int_G \vert g(y^{-1}x)\vert^r d\lambda(y) = \int_G \vert\tilde{g}(x^{-1}y)\vert d\lambda(y) = \|\tilde{g}\|^r_{L^{r}}
+	\end{equation*}
+
+	The Riesz-Thorin interpolation theorem now yields for any $0 < \theta < 1$
+
+	\begin{equation}
+		\norm{f \ast g}_{L^q} = \norm{T(f)}_{L^q} \leqslant \norm{g}_{L^r}^{1 - \theta}\norm{g}_{L^r}^{\theta} \norm{f}_{L^p} = \norm{g}_{L^r}\norm{f}_{L^p}
+	\end{equation}
+
+	\noindent where 
+
+	\begin{equation*}
+		\frac{1}{p} = \frac{1 - \theta}{1} + \frac{\theta}{r'} \qquad \frac{1}{q} = \frac{1 - \theta}{r} + \frac{\theta}{\infty}
+	\end{equation*}
+\end{proof}
+\end{remark}
+
+\begin{remark}
+	The proof would be much shorter if we just used Minkowski's inequality \textup{\cite[21--22]{grafakos:fourier:2014}} instead of Minkowski's integral inequality. However, the proof given here is an alternative version of the one given already for Minkowski's inequality.
+\end{remark}

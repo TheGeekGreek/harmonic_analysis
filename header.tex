@@ -1,0 +1,236 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Author:																 %
+%-------																 %
+%Yannis Baehni at University of Zurich									 %
+%baehni.yannis@uzh.ch													 %
+%																		 %
+%Version log:															 %
+%------------															 %
+%06/02/16 . Basic structure												 %
+%04/08/16 . Layout changes including section, contents, abstract.		 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Page Setup
+\documentclass[
+	11pt, 
+	oneside, 
+	a4paper,
+	reqno,
+	final
+]{amsart}
+
+\usepackage[
+	left = 3cm, 
+	right = 3cm, 
+	top = 3cm, 
+	bottom = 3cm
+]{geometry}
+
+%Headers and footers
+\usepackage{fancyhdr}
+	\pagestyle{fancy}
+	%Clear fields
+	\fancyhf{}
+	%Header right
+	\fancyhead[R]{
+		\footnotesize
+		Yannis B\"{a}hni\\
+		\href{mailto:yannis.baehni@uzh.ch}{yannis.baehni@uzh.ch}
+	}
+	%Header left
+	\fancyhead[L]{
+		\footnotesize
+		MAT694 Seminar: Introduction to Harmonic Analysis\\
+		HS16
+	}
+	%Page numbering in footer
+	\fancyfoot[C]{\thepage}
+	%Separation line header and footer
+	\renewcommand{\headrulewidth}{0.4pt}
+	%\renewcommand{\footrulewidth}{0.4pt}
+	
+	\setlength{\headheight}{19pt} 
+
+%Title
+\usepackage[foot]{amsaddr}
+\usepackage{xspace}
+\makeatletter
+\def\@textbottom{\vskip \z@ \@plus 1pt}
+\let\@texttop\relax
+\usepackage{etoolbox}
+\patchcmd{\abstract}{\scshape\abstractname}{\textbf{\abstractname}}{}{}
+
+%Switching commands for different section formats
+%Mainsectionsytle
+\newcommand{\mainsectionstyle}{%
+  	\renewcommand{\@secnumfont}{\bfseries}
+  	\renewcommand\section{\@startsection{section}{1}%
+    	\z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+    	{\normalfont\bfseries}}%
+	\renewcommand\subsection{\@startsection{subsection}{2}%
+    	\z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+    	{\normalfont\bfseries}}%
+	\renewcommand\subsubsection{\@startsection{subsubsection}{3}%
+    	\z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+    	{\normalfont\bfseries}}%
+}
+\newcommand{\originalsectionstyle}{%
+\def\@secnumfont{\bfseries}%\mdseries
+\def\section{\@startsection{section}{1}%
+  \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+  {\normalfont\bfseries\centering}}
+}
+%Formatting title of TOC
+\renewcommand{\contentsnamefont}{\bfseries}
+%Table of Contents
+\setcounter{tocdepth}{3}
+
+% Add bold to \section titles in ToC and remove . after numbers
+\renewcommand{\tocsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
+% Remove . after numbers in \subsection
+\renewcommand{\tocsubsection}[3]{%
+  \indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\let\tocsubsubsection\tocsubsection% Update for \subsubsection
+%...
+
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+    \nobreak
+    \hbox to\@pnumwidth{\@tocpagenum{\ifnum#1=1\bfseries\fi#7}}\par% <-- \bfseries for \section page
+    \nobreak
+    \endgroup
+  \fi}
+\AtBeginDocument{%
+\expandafter\renewcommand\csname r@tocindent0\endcsname{0pt}
+}
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+\def\l@subsubsection{\@tocline{2}{0pt}{4.5pc}{5pc}{}}
+\makeatother
+
+\advance\footskip0.4cm
+\textheight=54pc    %a4paper
+\textheight=50.5pc %letterpaper
+\advance\textheight-0.4cm
+\calclayout
+
+%Font settings
+%\usepackage{anyfontsize}
+%Footnote settings
+%\usepackage{mathptmx}
+\usepackage{footmisc}
+%	\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{commath}
+%Further math environments
+%Further math fonts (loads amsfonts implicitely)
+\usepackage{amssymb}
+%Redefinition of \text
+%\usepackage{amstext}
+\usepackage{upref}
+%Graphics
+%\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+%Frames
+\usepackage{mdframed}
+\allowdisplaybreaks
+%\usepackage{interval}
+\newcommand{\toup}{%
+  \mathrel{\nonscript\mkern-1.2mu\mkern1.2mu{\uparrow}}%
+}
+\newcommand{\todown}{%
+  \mathrel{\nonscript\mkern-1.2mu\mkern1.2mu{\downarrow}}%
+}
+\AtBeginDocument{\renewcommand*\d{\mathop{}\!\mathrm{d}}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\DeclareMathOperator\Log{Log}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\sech{sech}
+\DeclareMathOperator*\esssup{ess.sup}
+%\usepackage{hhline}
+%\usepackage{booktabs} 
+%\usepackage{array}
+%\usepackage{xfrac} 
+%\everymath{\displaystyle}
+%Enumerate
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize % activate!
+\usetikzlibrary{patterns}
+\pgfdeclarepatternformonly{adjusted lines}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{40pt}{40pt}}{\pgfqpoint{39pt}{39pt}}%
+{
+  \pgfsetlinewidth{.8pt}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{39.1pt}{39.1pt}}
+  \pgfusepath{stroke}
+}
+\usepackage{enumitem} 
+%\renewcommand{\labelitemi}{$\bullet$}
+%\renewcommand{\labelitemii}{$\ast$}
+%\renewcommand{\labelitemiii}{$\cdot$}
+%\renewcommand{\labelitemiv}{$\circ$}
+%Colors
+%\usepackage{color}
+%\usepackage[cmtip, all]{xy}
+%Theorems
+\newtheoremstyle{bold}              	 %Name
+  {}                                     %Space above
+  {}                                     %Space below
+  {\itshape}		                     %Body font
+  {}                                     %Indent amount
+  {\scshape}                             %Theorem head font
+  {.}                                    %Punctuation after theorem head
+  { }                                    %Space after theorem head, ' ', 
+  										 %	or \newline
+  {} 
+\theoremstyle{bold}
+\newtheorem*{definition*}{Definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{Proof}{Proof}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{properties}{Properties}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem*{remark*}{Remark}
+\newtheorem{remark}{Remark}[section]
+%German non-ASCII-Characters
+%Graphics-Tool
+%\usepackage{tikz}
+%\usepackage{tikzscale}
+%\usepackage{bbm}
+%\usepackage{bera}
+%Listing-Setup
+%Bibliographie
+\usepackage[backend=bibtex, style=alphabetic]{biblatex}
+%\usepackage[babel, german = swiss]{csquotes}
+\bibliography{Bibliography}
+%PDF-Linking
+%\usepackage[hyphens]{url}
+\usepackage[bookmarksopen=true,bookmarksnumbered=true]{hyperref}
+%\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor    = blue %Colour of citations
+}
+%Weierstrass-P symbol for power set
+\newcommand{\powerset}{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}}

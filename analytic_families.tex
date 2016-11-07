@@ -1,0 +1,629 @@
+\section{Interpolation of Analytic Families of Operators}
+The generalization of the classical Riesz-Thorin interpolation theorem to analytic families of operators is due to \emph{E. M. Stein} and \emph{Guido  Weiss}\footnote{\href{https://projecteuclid.org/euclid.tmj/1178244785}{https://projecteuclid.org/euclid.tmj/1178244785}, last accessed \today.}. Crucial for its proof is again an application of advanced topics in complex analysis.
+
+\subsection{Extension of Hadamard's Three Lines Lemma}
+This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will stick for the most part to the proof given in \cite[43--45]{grafakos:fourier:2014}, but for some parts I will use the paper by Stein and Weiss.
+
+
+\subsubsection{Auxiliary Lemmata} To shorten the proof of the extension of Hadamard's three lines lemma, I will summarize the most important facts used during the proof.
+
+\begin{lemma}
+	Let $D := \cbr[0]{z \in \mathbb{C} : \abs{z} < 1}$ be the open unit disc and 
+	
+	\begin{equation*}
+		h\del{z} := \frac{1}{\pi i}\log\del{i\frac{1 + z}{1 - z}}
+	\end{equation*}
+
+	for $z \in \overline{D} \setminus \{\pm 1\}$ where we are taking that continuous branch of $\log z$ in the complex plane slit along the negative imaginary axis, $\mathbb{C} \setminus \del{\cbr{0} \times \intco{0,\infty}}$. Then $h$ is a holomorphic function in $D$ which maps $\overline{D}\setminus \cbr{\pm 1}$ bijectively onto the closure $\overline{S}$ of the strip $S := \cbr{z \in \mathbb{C} : 0 < \Re z < 1}$.
+
+	\label{lem:h}
+\end{lemma}
+
+\begin{proof}
+	Consider the mapping $\varphi: \mathbb{S}^2 \to \mathbb{S}^2$ defined by
+
+	\begin{equation*}
+		\varphi\del{z} := \frac{1 + z}{1 - z}
+	\end{equation*}
+
+	This $\varphi$ maps $\cbr{-1,0,1}$ to $\cbr{0,1,\infty}$ and is a conformal mapping by \cite[278--279]{rudin:rc_analysis:1987}. The segment $\intoo{-1,1}$ maps onto the positive real axis as can be verified by considering the corresponding real limits and the unit circle $\mathbb{S}^1$ passes through $-1$ and $1$, hence $\varphi\del[0]{\mathbb{S}^1}$ is a straight line through $\varphi\del{-1} = 0$. Since $\mathbb{S}^1$ makes a right angle with the real axis at $-1$ so does $\varphi\del[0]{\mathbb{S}^1}$ at $0$ by the conformality of $\varphi$. Thus $\varphi\del[0]{\mathbb{S}^1}$ is the imaginary axis. Since $\varphi\del{0} = 1$, it follows that $\varphi$ is a conformal one-to-one mapping of the open unit disc onto the open right half plane. Furthermore, $\varphi\del[0]{\overline{D}\setminus \cbr{\pm 1}} = \mathbb{H}^\times$ where $\mathbb{H}^\times := \cbr{z \in \mathbb{C} : \Re z \geq 0} \setminus \cbr{0}$. Thus $i\varphi\del[0]{\overline{D}\setminus \cbr{\pm 1}} = i\mathbb{H}^\times = \cbr{z \in \mathbb{C} : \Im z \geq 0} \setminus \cbr{0}$ and so 
+	
+	\begin{equation*}
+		\log i\mathbb{H}^\times = \log \abs[0]{\mathbb{H}^\times} + i \arg i\mathbb{H}^\times = \cbr{z \in \mathbb{C} : 0 \leq \Im z \leq \pi}
+	\end{equation*}
+
+	Finally, multiplication with the preceeding factor $1/\del{\pi i}$ yields $h\del[0]{\overline{D} \setminus \cbr{\pm 1}} = \overline{S}$. Furthermore, we have
+
+	\begin{equation*}
+		h^{-1}\del{z} = \frac{e^{\pi iz} - i}{e^{\pi i z} + i}
+	\end{equation*}
+\end{proof}
+
+\begin{lemma*}
+	Let $X$ be a topological space. A function $f: X \to [-\infty,\infty)$ is upper semicontinuous if and only if for all $\alpha \in \mathbb{R}$ the set $f^{-1}\left( [-\infty,\alpha )\right)$ is open. 
+\end{lemma*}
+
+\begin{proof}
+	Suppose $f: X \to [-\infty,\infty)$ is upper semicontinuous and fix $\alpha \in \mathbb{R}$. We have that 
+
+		\begin{equation*}
+			f^{-1}\left( [-\infty,\alpha )\right) = \bigcup_{x \in \left\{ f < \alpha \right\}} U_x
+		\end{equation*}
+
+		\noindent where $U_x$ is a neighbourhood of $x$ such that $f < \alpha$ for any element in $U_x$. Conversly, for $x_0 \in X$ and $\alpha > f(x_0)$ we have that $f^{-1}\left( [-\infty,\alpha )\right)$ is open and $x_0 \in f^{-1}\left( [-\infty,\alpha )\right)$.
+\end{proof}
+
+\begin{lemma*}
+	An upper semiconutinuous function $f: X \to [-\infty,\infty)$ on a compact topological space attains its supremum. In particular it is bounded from above.
+		\label{lem:semicom}
+\end{lemma*}
+
+\begin{proof}
+	 $f(X)$ is bounded from above since otherwise
+
+	\begin{equation*}
+		X = \bigcup_{n \in \mathbb{N}} f^{-1}\left( [-\infty,n)\right)
+	\end{equation*}
+
+	\noindent would not have any finite subcover. Therefore $\sup_{x \in X}f(x)$ exists. Further we have $f(x_0) = \sup_{x \in X}f(x)$ for some $x_0 \in X$ since otherwise
+
+	\begin{equation*}
+		X = \bigcup_{n \in \mathbb{N}} \textstyle f^{-1}\left( [-\infty,\sup_{x \in X}f(x) - 1/n)\right)
+	\end{equation*}
+
+	\noindent would not have any finite subcover.	
+\end{proof}
+
+\begin{lemma}
+	Let $\Omega \subseteq \mathbb{C}$ and $f: \Omega \to \mathbb{C}$ continuous. Then $\log\left| f\right|$ is upper semicontinuous on $\Omega$.
+	\label{lem:uppersemcont}
+\end{lemma}
+
+\begin{proof}
+	Let us consider the topological space $\left( \Omega, \left| \cdot\right| \right)$. Let $z_0 \in \Omega$ so such that $f(z_0) \neq 0$. Then $\log\left| f\right|$ is continuous as a composition of continuous functions. If $M > f(z_0)$, then $M - \log\left| f(z_0)\right| > 0$ and thus there exists some $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\left| \log\left| f(z)\right| - \log\left| f(z_0)\right|\right| < M- \log\left| f(z_0)\right|$ or equivalently $\log\left| f(z)\right| < M$. Now let $z_0 \in \Omega$ so such that $f(z_0) = 0$. By convention $\log\left| f(z_0)\right| = -\infty$. Furthermore, $M > \log\left| f(z_0)\right|$ for any $M \in \mathbb{R}$. The condition $M > \log\left| f(z)\right|$ is equivalent to $\left| f(z)\right| < e^M$. But $f(z_0) = 0$ and so
+
+	\begin{equation*}
+		\left| f(z)\right| = \left| f(z) - f(z_0)\right|< e^M
+	\end{equation*}
+
+	Since $f$ is continuous at $z_0$ and $e^M > 0$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\left| f(z)\right| < e^M$.
+\end{proof}
+
+\begin{lemma}
+	The mapping $\Phi: \mathbb{R} \rightarrow (-\pi,0)$ defined by $\Phi(t) := -i\log\left( h^{-1}(it) \right)$ is a $C^1$-Diffeomorphism with $\vert D\Phi(t)\vert = \pi \sech(\pi t)$. In an analogous manner we have that $\Psi: \mathbb{R} \rightarrow (0,\pi)$, $\Psi(t) := -i\log\left( h^{-1}(1 + it) \right)$ is a $C^1$-Diffeomorphism with $\vert D\Psi(t)\vert = \pi \sech(\pi t)$.
+	\label{lem:change_of_variables}
+\end{lemma}
+
+\begin{proof}
+	It is easier to consider $\Phi^{-1}(\varphi) = -i h(e^{i\varphi})$ and $\Psi^{-1}(\varphi) = -i\left( h(e^{i\varphi}) - 1 \right)$ (this already shows that $\Phi$ is a bijective mapping). Since $\left| e^{i\varphi}\right| = 1$ it is immediate by the representation (\ref{eq:rep_lft}) and $y < 0$ that $\Im \Phi(\varphi) = 0$. Furthermore, $\lim_{\varphi \rightarrow -\pi} \Phi(\varphi) = \infty$ and $\lim_{\varphi \rightarrow 0} \Phi(\varphi) = -\infty$. By (\ref{eq:h_diff}) $\Phi$ is clearly continuously differentiable. Using
+	
+	\begin{equation*}
+		h^{-1}(it) = \frac{e^{-\pi t} - i}{e^{-\pi t} + i}
+	\end{equation*}
+	
+	we get
+
+	\begin{gather*}
+		\left| D\Phi(t)\right| = \pi\left| \frac{e^{-\pi t}}{e^{\pi t} - i} - \frac{e^{-\pi t}}{e^{-\pi t} + i}\right| = \pi\left| \frac{2e^{-\pi t}}{e^{-2\pi t} + 1}\right| \pi \left| \frac{2}{e^{-\pi t} + e^{\pi t}}\right|= \pi \sech(\pi t)
+	\end{gather*}
+\end{proof}
+
+\begin{lemma}
+	Let $1/(2e - 1) \leq \rho < 1$ and $\zeta = \rho e^{i\theta}$. Then
+
+	\begin{equation*}
+		\left| \log \left| \frac{1 + \zeta}{1 - \zeta} \right| \right| \leq 1 + \log \frac{1}{\left| \cos(\theta/2) \right|} + \log \frac{1}{\left| \sin(\theta/2) \right|}
+	\end{equation*}
+	\label{lem:upper_bound}
+\end{lemma}
+
+\begin{proof}
+	This proof is due to Prof. Schlein. We have on the one hand
+
+	\begin{equation*}
+		\left| 1 + \zeta \right| \leq 1 + \left| \zeta \right| = 1 + \rho
+	\end{equation*}
+
+	and on the other hand
+
+	\begin{equation*}
+		\left| 1 - \zeta \right| \geq \left|\Im\zeta \right| = \rho\left|\sin(\theta)\right|
+	\end{equation*}
+
+	Hence
+	
+	\begin{gather*}
+		\begin{aligned}
+			\log \frac{\left| 1 + \zeta \right|}{\left| 1 - \zeta \right|} &\leq \log\frac{1 + \rho}{\rho \left| \sin(\theta)\right|}\\
+			&=  \log\frac{1 + \rho}{2\rho \left| \sin(\theta/2)\right|\left| \cos(\theta/2)\right|}\\
+			&=  \log\frac{1 + \rho}{2\rho}  +  \log \frac{1}{\left| \sin(\theta/2)\right|} +  \log\frac{1}{\left| \cos(\theta/2)\right|}\\
+			&\leq  1 + \log \frac{1}{\left| \sin(\theta/2)\right|} + \log \frac{1}{\left| \cos(\theta/2)\right|}	
+		\end{aligned}
+	\end{gather*}
+
+	since
+
+	\begin{equation*}
+		\frac{1 + \rho}{2\rho} = \frac{1}{2} + \frac{1}{2\rho} \leq e
+	\end{equation*}
+
+	Now by
+
+	\begin{equation*}
+		-\log \frac{\left| 1 + \zeta \right|}{\left| 1 - \zeta \right|}  = 	\log \frac{\left| 1 - \zeta \right|}{\left| 1 + \zeta \right|} 
+	\end{equation*}
+
+	which corresponds to considering $-\zeta = e^{i\pi}\zeta = e^{i(\pi + \theta)}$ in the first case, yields by invoking the identities
+
+	\begin{equation*}
+		\cos\left( \frac{\pi + \theta}{2}\right) = -\sin(\theta/2) \qquad \sin\left( \frac{\pi + \theta}{2} \right) = \cos(\theta/2)
+	\end{equation*}
+
+	the bound 
+
+	\begin{equation*}
+		-\log \frac{\left| 1 + \zeta \right|}{\left| 1 - \zeta \right|} \leq 1 + \log \frac{1}{\left| \sin(\theta/2)\right|} + \log \frac{1}{\left| \cos(\theta/2)\right|}	 
+	\end{equation*}
+
+	and we are done.
+\end{proof}
+
+\begin{lemma}
+	Let $0 \leq \tau_0 < \pi$. Then 
+
+	\begin{equation*}
+		\frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}} \in L^1[-\pi,\pi]
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	The case $\tau_0 = 0$ is trivial. We use \cite[153--154]{elstrodt:mass:2011}. By the symmetry of the integrand it is enough to consider 
+
+	\begin{equation*}
+		\int_{0}^\pi \frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}} \d \theta
+	\end{equation*}
+
+	Thus we may perform the splitting 
+	
+	\begin{equation*}
+		\int_{0}^1 \frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}} \d \theta + \int_{1}^\pi \frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}} \d\theta
+	\end{equation*}
+	
+	Let us consider only the first integral, the second one is similar. Then we have 
+	
+	\begin{equation*}
+		\frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}} \leq 1 	\end{equation*}
+	
+	\noindent for $0 \leq \theta \leq 1$ and 
+	
+	\begin{equation*}
+		\begin{aligned}
+			\lim_{\theta \searrow 0}\frac{1/\sin(\theta/2)^{\tau_0/\pi}}{1/(\theta/2)^{\tau_0/\pi}} &=\lim_{\theta \to 0^+} \frac{(\theta/2)^{\tau_0/\pi}}{\sin(\theta/2)^{\tau_0/\pi}}\\ 
+			&= \lim_{\theta \searrow 0} \frac{(\theta/2)^{\tau_0/\pi}}{\left(\frac{\theta}{2} + O\left(\frac{\theta^3}{8}\right)\right)^{\tau_0/\pi}}\\
+			&= \lim_{\theta \searrow 0} \frac{(\theta/2)^{\tau_0/\pi}}{(\theta/2)^{\tau_0/\pi}\left(1 + O\left(\frac{\theta^2}{4}\right)\right)^{\tau_0/\pi}}\\ 
+			&= \lim_{\theta \searrow 0} \frac{(\theta/2)^{\tau_0/\pi}}{(\theta/2)^{\tau_0/\pi}\left(1 + O\left(\frac{\theta^2}{4}\right)\right)}\\ 
+			&= 1 
+		\end{aligned}
+	\end{equation*} 
+	
+	Thus 
+	
+	\begin{equation*}
+		\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}} \sim\frac{1}{\left( \theta/2 \right)^{\tau_0/\pi}}
+	\end{equation*}
+	
+	\noindent when $\theta \searrow 0$ and since $\tau_0 < \pi$, the latter integral converges. Thus we conclude by the comparison theorem.
+\end{proof}
+
+\subsubsection{The Lemma}
+Recall, that a function $f: X \to [-\infty,\infty[$ defined on a topological space $X$ is said to be \emph{upper semicontinuous} if for every point $x_0 \in X$ and each $M > f\left( x_0 \right)$ a neighbourhood $U$ of $x_0$ exists such that $M > f\left( x \right)$ for every $x \in U$ (see \cite[199]{rao:complex_analysis:1991}).
+
+\vspace{2mm}
+
+\begin{mdframed}
+	\begin{lemma}\emph{(Hadamard's three lines lemma, extension)}
+		Let $F$ be a holomorphic function in the strip $S := \{z \in \mathbb{C}: 0 < \mathrm{Re}z < 1\}$ and continuous on $\overline{S}$, such that for some $0 < A < \infty$ and $0 \leq \tau_0 < \pi$ we have $\log \vert F\left( z \right)\vert \leq A e^{\tau_0 \vert \Im z \vert}$ for every $z \in \overline{S}$. Then
+
+			\begin{equation*}
+				\vert F(z) \vert \leq \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log \vert F(it + iy)\vert}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log \vert F(1 + it + iy)\vert}{\cosh(\pi t) + \cos(\pi x)} \right] \d t\right)
+			\end{equation*}
+
+			whenever $z := x + iy \in S$.
+			\label{lem:EHTL}
+	\end{lemma}
+\end{mdframed}
+
+\begin{proof}
+	We will first prove the case \underline{$y = 0$.} Assume $F$ to be not identically zero (the case where $F$ is identically zero is trivial). Let $h$ be as in lemma (\ref{lem:h}) and let $\zeta = \rho e^{i\theta}$, $0 \leq \rho < 1$. Since $\zeta \in D$, we have $0 < \Re h(\zeta) < 1$ and thus the hypothesis on $F$ and lemma (\ref{lem:upper_bound}) yields
+
+\begin{gather}
+	\log \vert F(h(\zeta)) \vert \leq Ae^{\frac{\tau_0}{\pi}\left| \log\left| \frac{1 + \zeta}{1 - \zeta}\right|\right|} \leq Ae^{\tau_0/\pi}\frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}}
+	\label{est:admissible}
+\end{gather}
+
+	for $1/(2e - 1) \leq \rho$. Since $0 < \tau_0 < \pi$, inequality (\ref{est:admissible}) asserts, that $\log \vert F(h(\zeta))$ is bounded from above by an integrable function of $\theta$, independently of $\rho \geq 1/(2e - 1)$. Furthermore we have 
+
+	\begin{equation}
+		M := \sup\left\{\log \vert F(h(\zeta))\vert : \zeta \in \overline{B}_{1/\left( 2e - 1 \right)}\right\} < \infty
+	\end{equation}
+
+	\noindent since a upper semicontinuous function on a compact space attains its supremum (see lemma \ref{lem:semicom}). Hence
+
+	\begin{equation}
+		\log\vert F( h( \rho e^{i\theta} ))\vert \leq \max\left\{ M,   Ae^{\tau_0/\pi}\frac{1}{\left| \cos(\theta/2) \right|^{\tau_0/\pi}}\frac{1}{\left| \sin(\theta/2) \right|^{\tau_0/\pi}}\right\} =: g\left( \theta \right)
+		\label{est:log}
+	\end{equation}
+
+	\noindent for any $0 \leq \rho < 1$ where $g \in L^1[-\pi,\pi]$. Let $0 \leq \rho < R < 1$ and $a_1,\dots,a_n$ denote the zeros of $F(h(\zeta))$ for $\left\vert \zeta\right\vert < R$ (since $F \circ h$ is holomorphic for $\left\vert \zeta\right\vert < 1$ there are indeed only finitely many ones) multiple zeros being repeated. Then for $F(h(\zeta)) \neq 0$ we have by the \emph{Poisson-Jensen formula} (see \cite[208]{ahlfors:complex_analysis:1979})
+
+	\begin{equation}
+		\log\vert F(h(\zeta))\vert = - \sum_{k = 1}^n \log\left\vert \frac{R^2 - \overline{a}_k\zeta}{R\left( \zeta - a_k \right)}\right\vert	+ \frac{1}{2\pi}\int_{-\pi}^\pi \Re \left[\frac{R e^{it} + \zeta}{R e^{it} - \zeta}\right]\log\vert F(h(R e^{it}))\vert\d t
+	\end{equation}
+
+	Therefore by
+
+	\begin{equation*}
+		\begin{aligned}
+			\Re \left[\frac{R e^{it} + \zeta}{R e^{it} - \zeta}\right] &= \Re \left[\frac{R^2 - 2i \Im \left[ \zeta R e^{-it} \right] - \vert \zeta \vert^2}{R^2 - 2\Re \left[ \zeta R e^{-it} \right] + \vert \zeta \vert^2}\right]\\ &= \Re \left[\frac{R^2 - 2iR\rho \sin\left( \theta - t \right) - \rho^2 }{R^2 - 2R\rho \cos\left( \theta - t \right) + \rho^2}\right]\\
+			&= \frac{R^2 - \rho^2}{R^2 - 2R\rho \cos\left( \theta - t \right) + \rho^2}
+		\end{aligned}
+	\end{equation*}
+
+	\noindent and since $\left( R^2 - \vert a_k \vert^2 \right)\left( R^2 - \rho^2 \right)\geq 0$ for all $k = 1,\dots,n$ implies $\vert R^2 - \overline{a}_k\zeta \vert \geq \vert R\left( \zeta - a_k\right)\vert$ the estimate 
+
+	\begin{equation}
+		\log\vert F(h(\zeta))\vert \leq \frac{1}{2\pi}\int_{-\pi}^\pi \frac{R^2 - \rho^2}{R^2 - 2R\rho \cos\left( \theta - t \right) + \rho^2}\log\vert F(h(R e^{it}))\vert\d t
+	\end{equation}
+
+	\noindent is valid for every $\vert \zeta \vert < R$. By \cite[236]{rudin:rc_analysis:1987} we have
+
+	\begin{equation}
+		\frac{R - \rho}{R + \rho} \leq \frac{R^2 - \rho^2}{R^2 - 2R\rho\cos(\theta - \varphi) + \rho^2} \leq \frac{R + \rho}{R - \rho}
+		\label{est:poisson}
+	\end{equation}
+	
+	\noindent for $0 \leq \rho < R$. Combining (\ref{est:log}) and (\ref{est:poisson}) yields 
+
+\begin{equation}
+	\frac{R^2 - \rho^2}{R^2 - 2R\rho \cos\left( \theta - t \right) + \rho^2}\log\vert F(h(\zeta))\vert \leq \frac{R + \rho}{R - \rho}g\left( \theta \right) =: G\left( \theta \right)
+\end{equation}
+
+\noindent where $G \in L^1[-\pi,\pi]$. For $0 < R < 1$ let
+
+\begin{equation*}
+	f_R(\varphi) := \log\vert F(h(Re^{i\varphi}))\vert \frac{R^2 - \rho^2}{R^2 - 2R\rho\cos(\theta - \varphi) + \rho^2}
+\end{equation*}
+
+\noindent and for $\varphi \neq 0,\pi$
+
+\begin{equation*}
+	f(\varphi) := \log\vert F(h(e^{i\varphi}))\vert \frac{1 - \rho^2}{1 - 2\rho\cos(\theta - \varphi) + \rho^2}
+\end{equation*}
+
+Since $\log\vert F(h(\zeta))\vert$ is upper semicontinuous on $\overline{D} \setminus \left\{ \pm 1\right\}$ by lemma \ref{lem:uppersemcont} we get
+
+\begin{equation*}
+	\begin{aligned}
+		\limsup_{R \nearrow 1}f_R(\varphi) &= \limsup_{R \nearrow 1} \left[ \log\vert F(h(Re^{i\varphi}))\vert \frac{R^2 - \rho^2}{R^2 - 2R\rho\cos(\theta - \varphi) + \rho^2}\right]\\
+		&= \limsup_{R \nearrow 1} \log\vert F(h(Re^{i\varphi}))\vert \lim_{R \nearrow 1} \frac{R^2 - \rho^2}{R^2 - 2R\rho\cos(\theta - \varphi) + \rho^2}\\
+		&= \log\vert F(h(e^{i\varphi}))\vert \frac{1 - \rho^2}{1 - 2\rho\cos(\theta - \varphi) + \rho^2}\\
+		&= f(\varphi)
+	\end{aligned}
+\end{equation*}
+
+\noindent using \cite[363]{bourbaki:general_topology:1995} and proposition \ref{prop:limsup}. The functions $G - f_R$ being non-negative, an application of Fatou's lemma yields
+
+\begin{equation*}
+	\int_{-\pi}^\pi \liminf_{R \nearrow 1}\left[ G(\varphi) - f_R(\varphi)\right]\d\varphi \leq \liminf_{R \nearrow 1} \int_{-\pi}^\pi \left[ G(\varphi) f_R(\varphi)\right]\d\varphi
+\end{equation*}
+
+By \cite[354]{bourbaki:general_topology:1995}, we get
+
+\begin{equation*}
+	-\int_{-\pi}^\pi \limsup_{R \nearrow 1}\left[ f_R(\varphi) - G(\varphi)\right]\d\varphi \leq -\limsup_{R \nearrow 1} \int_{-\pi}^\pi \left[ f_R(\varphi) - G(\varphi)\right]\d \varphi
+\end{equation*}
+
+and thus
+
+\begin{multline*}
+	\limsup_{R \nearrow 1} \int_{-\pi}^\pi f_R(\varphi) \d\varphi - \int_{-\pi}^\pi G(\varphi)\d\varphi\\
+	= \limsup_{R \nearrow 1} \int_{-\pi}^\pi f_R(\varphi) \d\varphi + \lim_{R \nearrow 1}\int_{-\pi}^\pi \left(-G(\varphi)\right)\d\varphi\\
+	= \limsup_{R \nearrow 1}\int_{-\pi}^\pi \left[ f_R(\varphi) - G(\varphi)\right]\d\varphi\leq \int_{-\pi}^\pi \limsup_{R \nearrow 1} \left[f_R(\varphi) - G(\varphi)\right]\d\varphi\\
+	\leq \int_{-\pi}^\pi \limsup_{R \nearrow 1} f_R(\varphi) \d\varphi + \int_{-\pi}^\pi\lim_{R \nearrow 1} \left(-G(\varphi)\right)\d\varphi\\
+	= \int_{-\pi}^\pi \limsup_{R \nearrow 1}f_R(\varphi) \d\varphi - \int_{-\pi}^\pi G(\varphi)\d\varphi
+\end{multline*}
+
+by \cite[358]{bourbaki:general_topology:1995}. Hence
+
+\begin{equation*}
+	\limsup_{R \nearrow 1} \int_{-\pi}^\pi f_R(\varphi) \d\varphi \leq\int_{-\pi}^\pi \limsup_{R \nearrow 1}f_R(\varphi) \d\varphi
+\end{equation*}
+
+and so 
+
+\begin{equation}
+	\log\vert F( h( \zeta ) )\vert \leq \frac{1}{2\pi} \int_{-\pi}^\pi \log\vert F( h( e^{i\varphi}))\vert \frac{1 - \rho^2}{1 - 2\rho\cos\left( \theta - \varphi \right) + \rho^2}\d\varphi	
+	\label{eq:limit_case}
+\end{equation}
+
+The lemma now follows from (\ref{eq:limit_case}) by a change of variables. By stipulating $x := h\left( \zeta \right)$ we obtain \footnote{
+		Recall, that for $z \in \mathbb{C}$ the trigonometric functions are defined by $\sin(z) := \frac{e^{iz} - e^{-iz}}{2i}$ and $\cos(z) := \frac{e^{iz} + e^{-iz}}{2}$. Hence the identities $e^{iz} = \cos(z) + i\sin(z)$ and $\cos^2(z) + \sin^2(z) = 1$ holds for any $z \in \mathbb{C}$ (see \cite[42--44]{ahlfors:complex_analysis:1979}).	
+	}
+
+\begin{multline}
+	\zeta = h^{-1}(x) = \frac{e^{\pi i x}- i}{e^{\pi i x} + i} = \frac{\cos(\pi x) + i\sin(\pi x) - i}{\cos(\pi x) + i\sin(\pi x) + i}\\
+		= \frac{\cos(\pi x) + i\sin(\pi x) - i}{\cos(\pi x) + i\sin(\pi x) + i}\frac{\cos(\pi x) - i\sin(\pi x) - i}{\cos(\pi x) - i\sin(\pi x) - i}\\
+		= -i \frac{\cos(\pi x)}{1 + \sin(\pi x)} = \left( \frac{\cos(\pi x)}{1 + \sin(\pi x)} \right)e^{-i\pi/2}
+	\label{eq:radius_angle}
+\end{multline}
+
+by
+
+\begin{multline*}
+	\left(\cos(\pi x) + i\sin(\pi x) - i\right)\left(\cos(\pi x) - i\sin(\pi x) - i\right)\\ = \cos^2(\pi x) - i\sin(\pi x)\cos(\pi x)	
+		-i\cos(\pi x) + i\sin(\pi x)\cos(\pi x)\\
+	 	+ \sin^2(\pi x) + \sin(\pi x) - i \cos(\pi x) - \sin(\pi x) - 1 = -2i \cos(\pi x)  
+\end{multline*}
+
+and
+	
+\begin{multline*}
+	\left( \cos(\pi x) + i\sin(\pi x) + i \right)\left( \cos(\pi x) - i\sin(\pi x) - i \right)\\ = \cos^2(\pi x) - i\sin(\pi x)\cos(\pi x) - i\cos(\pi x) + i\sin(\pi x)\cos(\pi x)\\
+	+ \sin^2(\pi x) + \sin(\pi x)+ i \cos(\pi x) + \sin(\pi x) + 1 = 2 + 2\sin(\pi x)
+\end{multline*}
+
+	From equality (\ref{eq:radius_angle}) we deduce $\rho = \frac{\cos(\pi x)}{1 + \sin(\pi x)}$, $\theta = \frac{\pi}{2}$ if $0 < x \leq \frac{1}{2}$ and $\rho = -\frac{\cos(\pi x)}{1 + \sin(\pi x)}$, $\theta = \frac{\pi}{2}$ if $\frac{1}{2} \leq x < 1$. Let $0 < x \leq \frac{1}{2}$. Then we have
+
+\begin{multline*}
+	\frac{1 - \rho^2}{1 - 2\rho\cos(\theta - \varphi) + \rho^2} \\= \frac{1 + 2\sin(\pi x) + \sin^2(\pi x) - \cos^2(\pi x)}{1 + 2\sin(\pi x) + \sin^2(\pi x) + 2\cos(\pi x)\sin(\varphi)(1 + \sin(\pi x)) + \cos^2(\pi x)}\\
+	= \frac{\sin(\pi x) + \sin^2(\pi x)}{1 + \sin(\pi x) + \cos(\pi x)\sin(\varphi)(1 + \sin(\pi x))}
+	= \frac{\sin(\pi x)}{1 + \cos(\pi x)\sin(\varphi)}
+\end{multline*}
+
+	since $\cos\left( -\pi/2 - \varphi \right) = -\sin(\varphi)$. That the case $\frac{1}{2} \leq x < 1$ yields the same result is due to $\cos(\pi/2 - \varphi) = \sin(\varphi)$. Let $\Phi$ and $\Psi$ be defined as in lemma (\ref{lem:change_of_variables}). We have 
+				
+\begin{gather*}
+	\begin{aligned}
+		e^{i\Phi(t)} &= h^{-1}(it) = \frac{e^{-\pi t} - i}{e^{-\pi t} + i} \frac{e^{-\pi t} - i}{e^{-\pi t} - i} = \frac{e^{-2\pi t} - 2ie^{-\pi t} - 1}{e^{-2\pi t} + 1} = \frac{e^{-2\pi t} - 1}{e^{-2\pi t} + 1} - \frac{2ie^{-\pi t}}{e^{-2\pi t} + 1}\\ 
+		&= \frac{e^{-2\pi t} - 1}{e^{-2\pi t} + 1} - \frac{2i}{e^{-\pi t} + e^{\pi t}} = \frac{1 - e^{2\pi t}}{1 + e^{2\pi t}} - \frac{2i}{e^{-\pi t} + e^{\pi t}} = -\tanh (\pi t) - i \sech(\pi t)
+	\end{aligned}
+\end{gather*}
+	
+and thus
+
+\begin{gather*}
+	\begin{aligned}
+		\sin\left( \Phi(t) \right)\cosh(\pi t) &= \sin\left( -i\log\left( -\tanh (\pi t) - i \sech(\pi t) \right)\right) \cosh(\pi t)\\
+		&= \frac{1}{2i} \left[ -\tanh(\pi t) - i\sech(\pi t) + \frac{1}{\tanh(\pi t) + i\sech(\pi t) }\right]\cosh(\pi t)\\
+		&= \frac{1}{2i} \left[ \frac{\cosh(\pi t) - \tanh(\pi t) \sinh(\pi t) - 2i\tanh(\pi t) + \sech(\pi t)}{\tanh(\pi t) + i\sech(\pi t)}\right]\\
+		&= \frac{1}{2i} \left[ \frac{\cosh^2(\pi t) - \sinh^2(\pi t) - 2i \sinh(\pi t) + 1}{\sinh(\pi t) + i}\right]\\
+		&= \frac{1 - i\sinh(\pi t)}{i\sinh(\pi t) - 1}\\
+		&= -1
+	\end{aligned}
+\end{gather*}
+
+Therefore the transformation formula yields
+
+\begin{multline}
+	\frac{1}{2\pi} \int_{-\pi}^0 \frac{\sin(\pi x)}{1 + \cos(\pi x)\sin(\varphi)} \log \vert F(h(e^{i\varphi}))\vert \d\varphi\\ = \frac{1}{2}\int_{-\infty}^\infty\frac{\sin(\pi x)}{\cosh(\pi t) - \cos(\pi x)} \log\vert F(it) \vert \d t
+\end{multline}
+				
+and in a similar manner
+		
+\begin{multline}
+	\frac{1}{2\pi} \int_0^\pi \frac{\sin(\pi x)}{1 + \cos(\pi x)\sin(\varphi)} \log \vert F(h(e^{i\varphi}))\vert \d\varphi\\ = \frac{1}{2}\int_{-\infty}^\infty\frac{\sin(\pi x)}{\cosh(\pi t) + \cos(\pi x)} \log\vert F(1 + it) \vert \d t
+\end{multline}
+
+holds since
+
+\begin{gather*}
+	\begin{aligned}
+		\sin\left(\Psi(t)\right)\cosh(\pi t) &= \sin\left( -i\log\left( -\tanh (\pi t) + i \sech(\pi t) \right)\right) \cosh(\pi t)\\
+		&= \frac{1}{2i} \left[ -\tanh(\pi t) + i\sech(\pi t) - \frac{1}{-\tanh(\pi t) + i\sech(\pi t) }\right]\cosh(\pi t)\\
+		&= \frac{1}{2i} \left[ \frac{-\cosh(\pi t) + \tanh(\pi t) \sinh(\pi t) - 2i\tanh(\pi t) - \sech(\pi t)}{-\tanh(\pi t) + i\sech(\pi t)}\right]\\
+		&= \frac{1}{2i} \left[ \frac{- \cosh^2(\pi t) + \sinh^2(\pi t) - 2i \sinh(\pi t) - 1}{i - \sinh(\pi t)}\right]\\
+		&= \frac{1 + i\sinh(\pi t)}{1 + i\sinh(\pi t)}\\
+		&= 1
+	\end{aligned}
+\end{gather*}
+
+Thus the case $y = 0$ is prooven.\\
+The case \underline{$y \neq 0$.} follows easily from the previous one. Fix $y \neq 0$ and define $G(z) := F(z + iy)$ for $z \in \overline{S}$. Then $G$ is a holomorphic function in $S$ and continuous on $\overline{S}$ as a composition of continuous and holomorphic functions. Moreover, the hypothesis on $F$ yields
+
+		\begin{equation}
+			\log \vert G(z) \vert = \log \vert F(z + iy) \vert \leq Ae^{\tau \vert \Im z + y\vert} \leq Ae^{\tau \vert \Im z \vert}e^{\tau \vert y \vert}
+		\end{equation}
+
+		for all $z \in \overline{S}$. The previous case yields for $G$ with $A$ replaced by $Ae^{\tau\vert y \vert}$
+
+		\begin{equation}
+			\vert G(x) \vert \leq \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log \vert G(it)\vert}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log \vert G(1 + it)\vert}{\cosh(\pi t) + \cos(\pi x)} \right] \d t\right)
+		\end{equation}
+
+		Now, observing $G(x) = F(x + iy)$, $G(it) = F(it + iy)$ and $G(1 + it) = F(1 + it + iy)$ yields the desired result.
+\end{proof}
+
+\begin{remark}
+	Exercise \textbf{1.3.8.} \textup{\cite[48]{grafakos:fourier:2014}} shows that the name extension is an appropriate choice. For $0 < x < 1$ consider
+
+	\begin{equation*}
+		\begin{aligned}
+			\frac{\sin\left( \pi x \right)}{2} \int_{-\infty}^\infty \frac{1}{\cosh\left( \pi t \right) + \cos\left( \pi x \right)} \d t &= \frac{\sin\left( \pi x \right)}{2} \int_{-\infty}^\infty \frac{1}{\frac{1}{2}\left( e^{\pi t} + e^{-\pi t} \right) + \cos\left( \pi x \right)} \d t\\
+			&= \frac{\sin\left( \pi x \right)}{\pi} \int_{0}^\infty \frac{1}{s^2 + 2\cos\left( \pi x \right)s + 1} \d s\\
+			&= \frac{\sin\left( \pi x \right)}{\pi} \int_{0}^\infty \frac{1}{\left( s + \cos\left( \pi x \right) \right)^2 + \sin^2\left( \pi x \right)} \d s\\
+			&= \frac{1}{\pi\sin\left( \pi x \right)} \int_{0}^\infty \frac{1}{\left( \frac{s + \cos\left( \pi x \right)}{\sin\left( \pi x \right)} \right)^2 + 1} \d s\\
+			&= \frac{1}{\pi} \int_{\cot\left( \pi x \right)}^\infty \frac{1}{u^2 + 1} \d u\\
+			&= \frac{1}{\pi}\left[ \frac{\pi}{2} - \arctan\left( \cot\left( \pi x \right) \right) \right]\\
+			&= x
+		\end{aligned}
+	\end{equation*}
+
+	\noindent and in the same manner
+
+	\begin{equation*}
+		\frac{\sin\left( \pi x \right)}{2} \int_{-\infty}^\infty \frac{1}{\cosh\left( \pi t \right) - \cos\left( \pi x \right)} \d t = 1 - x	
+	\end{equation*}
+
+	Assume that $F$ is holomorphic in $S$, continuous and bounded on $\overline{S}$ with $\abs{F\left( z \right)} \leq B_0$ when $\Re z = 0$ and $\abs{F\left( z \right)} \leq B_1$ when $\Re z = 1$ for some $0 < B_0, B_1 < \infty$. If $\abs{F\left( z \right)} \leq M$ for $0 < M < \infty$, $F$ satisfies the hypothesis of lemma \ref{lem:EHTL} with $A := \log\left( M \right)$ and $\tau_0 = 0$. Therefore 
+	
+	\begin{equation*}
+		\begin{aligned}
+		\vert F(z) \vert &\leq \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log \vert F(it + iy)\vert}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log \vert F(1 + it + iy)\vert}{\cosh(\pi t) + \cos(\pi x)} \right] \d t\right)\\
+		&\leq \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log B_0}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log B_1}{\cosh(\pi t) + \cos(\pi x)} \right] \d t\right)\\
+		&= \exp\left( x\log B_0 + \left( 1 - x\right)\log B_1 \right)\\
+		&= B_0^xB_1^{1 - x}
+		\end{aligned}
+	\end{equation*}
+
+	\noindent whenever $z := x + iy \in S$. Hence lemma \ref{lem:EHTL} reduces to lemma \ref{lem:HTL}.
+\end{remark}
+
+\subsection{Stein's Theorem on Interpolation of Analytic Families of Operators}
+Because of the complex nature of the proof of the Riesz-Thorin Interpolation Theorem (\ref{thm:Riesz_Thorin}), Elias M. Stein realized quickly, that the restritction to consider only one linear operator $T$ could easily be omited and instead, an analytic family of operators $T_z$ depending on some complex parameter $z$ could be considered.
+
+\vspace{2mm}
+
+\begin{mdframed}
+	\begin{definition}\emph{(Analytic family, admissible growth)}
+		Let $(X,\mu)$ be a measure space, $(Y,\nu)$ be a semifinite measure spaces and $\left( T_z \right)_{z \in \overline{S}}$, where $T_z$ is defined $\Sigma_X$ and taking values in the space of all measurable functions on $Y$ such that
+
+		\begin{equation}
+			\int_Y \left| T_z(\chi_A)\chi_B \right| d\nu
+		\end{equation}
+
+		whenever $\mu(A),\nu(B) < \infty$. The family $\left( T_z \right)_{z \in \overline{S}}$ is said to be \emph{analytic} if for all $f \in \Sigma_X$, $g \in \Sigma_Y$ we have that
+
+		\begin{equation}
+			z \mapsto \int_Y T_z(f)gd\nu
+		\end{equation}
+
+		is analytic on $S$ and continuous on $\overline{S}$. Further, an analytic family $\left( T_z \right)_{z \in \overline{S}}$ is called of \emph{admissible growth}, if there is a constant $\tau_0 \in (0,\pi)$, such that for all $f \in \Sigma_X$, $g \in \Sigma_Y$ a constant $C(f,g)$ exists with
+
+			\begin{equation}
+				\log\left| \int_Y T_z(f) g d\nu\right| \leq C(f,g)e^{\tau_0\left| \Im z\right|}
+			\end{equation}
+
+			for all $z \in \overline{S}$.
+	\end{definition}
+\end{mdframed}
+
+\vspace{2mm}
+
+Now we are able to write down the theorem.
+
+\vspace{2mm}
+
+\begin{mdframed}
+	\begin{theorem}\emph{(Stein's Theorem on Interpolation of Analytic Families of Operators)}
+		Let $\left( T_z \right)_{z \in \overline{S}}$ be an analytic family of admissible growth, $1 \leq p_0,p_1,q_0,q_1 \leq \infty$ and suppose that $M_0$, $M_1$ are positive functions on the real line such that for some $\tau_1 \in (0,\pi)$
+
+			\begin{equation}
+				\sup\left\{e^{-\tau_1 \vert y \vert} \log M_0(y) : y \in \mathbb{R}\right\} < \infty \qquad \sup\left\{e^{-\tau_1 \vert y \vert} \log M_1(y) : y \in \mathbb{R}\right\} < \infty
+			\end{equation}
+
+			Fix $0 < \theta < 1$ and define
+
+			\begin{equation}
+				\frac{1}{p} := \frac{1 - \theta}{p_0} + \frac{\theta}{p_1} \qquad \frac{1}{q} := \frac{1 - \theta}{q_0} + \frac{\theta}{q_1}
+			\end{equation}
+
+			Further suppose that for all $f \in \Sigma_X$ and $y \in \mathbb{R}$ we have
+
+			\begin{equation}
+				\|T_{iy}(f)\|_{L^{q_0}} \leq M_0(y)\|f\|_{L^{p_0}} \qquad \|T_{1 + iy}(f)\|_{L^{q_1}} \leq M_1(y)\|f\|_{L^{p_1}} 
+			\end{equation}
+
+			Then for all $f \in \Sigma_X$ we have
+
+			\begin{equation*}
+				\|T_\theta(f)\|_{L^q} \leq M(\theta)\|f\|_{L^p}
+			\end{equation*}
+
+			where for $0 < x < 1$
+
+			\begin{equation*}
+				M(x) = \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log M_0(t)}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log M_1(t)}{\cosh(\pi t) + \cos(\pi x)}\right] \d t \right)
+			\end{equation*}
+	\end{theorem}
+\end{mdframed}
+
+\begin{proof}
+	Fix $0 < \theta < 1$ and $f \in \Sigma_X$, $g \in \Sigma_Y$ with $\left\|f\right\|_{L^p} = \left\|g\right\|_{L^{q'}} = 1$. Define $f_z$, $g_z$ as in (\ref{def:fzgz}) and for $z \in \overline{S}$
+
+	\begin{equation}
+		F(z) := \int_Y T_z(f_z)g_z d\nu	
+	\end{equation}
+
+	Since the family $\del{T_z}_{z \in \overline{S}}$ is of admissible growth we have that there exist constants $c\del[0]{\chi_{A_j},\chi_{B_k}}$ for any $j = 1,\dots,n$ and $k = 1,\dots,m$ such that 
+
+	\begin{equation*}
+		\log\abs{\int_{B_k}T_z\del[0]{\chi_{A_j}}\d \nu} \leq c\del[0]{\chi_{A_j},\chi_{B_k}}e^{\tau_0\abs{\Im z}}
+	\end{equation*}
+
+	For shorthand we will denote these constants simply by $c\del[0]{A_j,B_k}$ and get
+
+	\begin{gather*}
+		\begin{aligned}
+			\log \left| F(z) \right| &= \log \left| \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_j b_j^{Q(z)} e^{i\alpha_j} e^{i\beta_k} \int_YT_z(\chi_{A_j})(y)\chi_{B_k}(y)d\nu(y)\right|\\
+			&\leq  \log \left[ \sum_{j = 1}^n\sum_{k = 1}^m \max\left\{1,a_j^{p/p_0 + p/p_1}\right\} \max\left\{1,b_k^{q'/q'_0 + q'/q'_1}\right\} \left|\int_{B_k} T_z(\chi_{A_j}) d\nu\right|\right]\\
+		&\leq \log\left[ \sum_{j = 1}^n\sum_{k = 1}^m \left( 1 + a_j\right)^{p/p_0 + p/p_1} \left(1 + b_k\right)^{q'/q'_0 + q'/q'_1} e^{c(A_j,B_k)e^{\tau_0 \left| \Im z\right|}} \right]\\
+	&\leq  \log\left[ \sum_{j = 1}^n\sum_{k = 1}^m e^{\log\left(\left( 1 + a_j\right)^{p/p_0 + p/p_1}\left( 1 + b_k\right)^{q'/q'_0 + q'/q'_1}\right) + c(A_j,B_k)e^{\tau_0 \left| \Im z\right|}} \right]\\
+	&\leq \log\left[ mn e^{\sum_{j = 1}^n\sum_{k = 1}^m\log\left(\left( 1 + a_j\right)^{p/p_0 + p/p_1} \left(1 + b_k\right)^{q'/q'_0 + q'/q'_1}\right) + c(A_j,B_k)e^{\tau_0 \left| \Im z\right|}} \right]\\
+			&= \log\left( mn \right) + \sum_{j = 1}^n\sum_{k = 1}^m\log\left(\left(1 + a_j\right)^{p/p_0 + p/p_1}\left(1 +  b_k\right)^{q'/q'_0 + q'/q'_1}\right) + c(A_j,B_k)e^{\tau_0 \left| \Im z\right|}
+		\end{aligned}
+	\end{gather*}
+
+	Since $\tau_0 \in (0,\pi)$ and thus $e^{\tau_0 \left| \Im z\right|} \geq 1$, $F$ satisfies the hypotheses of the extension of Hadamard's three lines lemma (\ref{lem:EHTL}) with 
+
+		\begin{equation*}
+		A =  \log\left( mn \right) + \sum_{j = 1}^n\sum_{k = 1}^m\left( \frac{p}{p_0} + \frac{p}{p_1}\right)\log\left(1 + a_j\right) + \left( \frac{q'}{q'_0} + \frac{q'}{q'_1} \right) \log\left( 1 + b_k\right) + c(A_j,B_k)
+	\end{equation*}
+
+	The same calculations as in the proof of the Riesz-Thorin interpolation theorem (\ref{thm:Riesz_Thorin}) yields for $y \in \mathbb{R}$
+
+	\begin{equation*}
+		\left\| f_{iy}\right\|_{L^{p_0}} = \left\| f\right\|^{p/p_0}_{L^p} = 1 = \left\| g\right\|_{L^{q'}}^{q'/q'_0} = \left\| g_{iy}\right\|_{L^{q_0'}}
+	\end{equation*}
+
+	and
+
+	\begin{equation*}
+		\left\| f_{1 + iy}\right\|_{L^{p_1}} = \left\| f\right\|^{p/p_1}_{L^p} = 1 = \left\| g\right\|_{L^{q'}}^{q'/q'_1} = \left\| g_{1 + iy}\right\|_{L^{q_1'}}
+	\end{equation*}
+
+	Further
+
+	\begin{equation*}
+		\left| F(iy)\right| \leq \left\| T_{iy}(f_{iy})\right\|_{L^{q_0}} \left\| g_{iy}\right\|_{L^{q'_0}} \leq M_0(y) \left\|f_{iy}\right\|_{L^{p_0}}\left\| g_{iy}\right\|_{L^{q_0'}} = M_0(y)
+	\end{equation*}
+
+	and
+
+	\begin{equation*}
+		\left| F(1 + iy)\right| \leq \left\| T_{1 + iy}(f_{1 + iy})\right\|_{L^{q_1}} \left\| g_{1 + iy}\right\|_{L^{q'_1}} \leq M_1(y) \left\|f_{1 + iy}\right\|_{L^{p_1}}\left\| g_{1 + iy}\right\|_{L^{q_1'}} = M_1(y)
+	\end{equation*}
+
+	by H\"older's inequality and the hypotheses on the analytic family $(T_z)_{z \in \overline{S}}$. Therefore the extension of Hadamard's three lines lemma (\ref{lem:EHTL}) yields
+
+	\begin{equation*}
+		\left| F(x) \right| \leq \exp\left( \frac{\sin(\pi x)}{2} \int_{-\infty}^\infty \left[ \frac{\log M_0(t)}{\cosh(\pi t) - \cos(\pi x)} + \frac{\log M_1(t)}{\cosh(\pi t) + \cos(\pi x)}\right] d\lambda(t) \right) = M(x)
+	\end{equation*}
+
+	for every $0 < x < 1$. Furthermore observe that
+
+	\begin{equation*}
+		F(\theta) = \int_Y T_\theta(f)gd\nu
+	\end{equation*}
+
+	and thus by \cite[189]{folland:real_analysis:1999} ($\Sigma_Y$ denotes the set of all finitely simple functions on the semifinite space $Y$)
+
+	\begin{gather*}
+		\begin{aligned}
+			M_q\left(T_\theta(f)\right) &= \sup\left\{ \left| \int_Y T_\theta(f) g\right| : g \in \Sigma_Y, \left\|g \right\|_{L^{q'}}\right\}\\
+			&= \sup\left\{ \left| F(\theta)\right| : g \in \Sigma_Y, \left\| g \right\|_{L^{q'}}\right\}\\
+			&\leq M(\theta)
+		\end{aligned}
+	\end{gather*}
+
+	Since $M(\theta)$ is an absolutely convergent integral for any $0 < \theta < 1$, $M_q\left(T_\theta(f)\right) < \infty$ and thus $M_q\left(T_\theta(f)\right) = \left\| T_\theta(f)\right\|_{L^q}$ (this is incorporated by the growth conditions on $M_0$ and $M_1$). The general statement follows by replacing $f$ with $f/\left\| f\right\|_{L^p}$ when $\left\|f \right\|_{L^p} \neq 0$. The theorem is trivially true when $\left\| f\right\|_{L^p} = 0$.
+\end{proof}

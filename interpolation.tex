@@ -1,0 +1,157 @@
+\input{header.tex}
+
+\begin{document}
+
+%Remake Tikz-picture
+%\tikzset{external/force remake}
+
+\begin{abstract}
+	In this written seminar work I will basically follow the section \emph{Interpolation} in the book \emph{Classical Fourier Analysis, third Edition} by Loukas Grafakos. I will review three basic but important theorems on interpolation of operators on $L^p$ spaces, namely the \emph{Marcinkiewicz Interpolation Theorem}, the \emph{Riesz-Thorin Interpolation Theorem} and finally an extension of the Riesz-Thorin Interpolation Theorem to analytic families of operators (the so-called \emph{Stein's theorem on interpolation of analytic families of operators}). We are mainly concerned with the notion of linear operators as well as slight generalizations of them. 
+\end{abstract}
+
+\title{Classical Fourier Analysis: Interpolation of $L^p$ Spaces}
+\author{Yannis B\"{a}hni}
+\address[Yannis B\"{a}hni]{University of Zurich, R\"{a}mistrasse 71, 8006 Zurich}
+\email[Yannis B\"{a}hni]{\href{mailto:yannis.baehni@uzh.ch}{yannis.baehni@uzh.ch}}
+\thanks{I would like to thank Dr. Chiara Saffirio for many helpful suggestions, Prof. Dr. Benjamin Schlein for his brilliant Analyis I/II/III courses as well as scripts and proof hints and of course Loukas Grafakos, who helped me a lot with understanding his proofs.}
+\maketitle
+
+\tableofcontents
+\listoffigures
+
+\mainsectionstyle
+
+\section{Introduction and Basic Definitions}
+Suppose $\del{p_0,q_0},\del{ p_1,q_1} \in \intcc{1,\infty} \times \intcc{1,\infty}$ are two pairs of indices and assume that the estimates 
+
+\begin{equation*}
+	\norm[0]{T\del{f}}_{L^{q_0}} \leq M_0 \norm[0]{f}_{L^{p_0}} \quad \text{and} \quad \norm[0]{T\del{f}}_{L^{q_1}} \leq M_1\norm{f}_{L^{p_1}}
+\end{equation*}
+
+\noindent hold, where $T$ is an appropriately choosen operator. Does this imply that
+
+\begin{equation*}
+	\norm[0]{T\del{f}}_{L^q} \leq M \norm{f}_{L^p} \quad \text{for other pairs $\del{p,q} \in \intcc{1,\infty}$?} 
+\end{equation*}
+
+Those and similar questions will be answered by a tool called \emph{interpolation}, in our case interpolation of $L^p$ spaces. Using interpolation it is possible to reduce difficult estimates to endpoint estimates and so interpolation can (but not always does) simplify matters. Among the numerous applications of interpolation is by far the shortest proof of \emph{Young's inequality for convolutions} \textup{\cite[22--23]{grafakos:fourier:2014}}. There is not \emph{the} interpolation theorem, merely a family of theorems which can be 
+roughly divided into two main categories: \emph{real} and \emph{complex} interpolation methods. Real methods use so called \emph{cut-off} functions to divide the functions in the domain of the operator $T$ into a bounded and unbounded part and then establish bounds on each of those parts whereas complex interpolation theorems are based upon standard results in complex analysis and are more restrictive on the operator $T$ in question but yield more natural bounds (even continuous estimates) and will therefore be considered in this task. First we need a rigorous idea of what an appropriately choosen operator means in the context of Lebesgue spaces. 
+
+\vspace{2mm}
+
+\begin{mdframed}
+	\begin{definition}
+		Let $\del{X,\mu}$ and $\del{Y,\nu}$ be measure spaces. Further let $T$ be an operator defined on a linear space of complex-valued measurable functions on $X$ and taking values in the set of all complex-valued, finite almost everywhere, measurable functions on $Y$. Then $T$ is called \emph{linear} if for all functions $f$ and $g$ in the domain of $T$ and all $z \in \mathbb{C}$ holds
+
+		\begin{equation}
+			T{f + g} = T\del{f} + T\del{g} \qquad T\del{zf} = zT\del{f}
+			\label{eq:linear}
+		\end{equation}
+
+		\noindent and \emph{quasi-linear} if
+
+		\begin{equation}
+			\abs[0]{T \del{f + g}} \leqslant K \del[0]{\abs[0]{ T\del{f}} + \abs[0]{ T\del{g}}} \qquad \abs[0]{ T\del{zf} } = \abs{z}\abs[0]{ T\del{f}}
+			\label{eq:quasilinear}
+		\end{equation}
+
+		\noindent holds for some real constant $K > 0$. If $K = 1$, $T$ is called \emph{sublinear}.
+	\end{definition}
+\end{mdframed}
+
+%Complex method
+\input{complex_method.tex}
+%Analytic families
+\input{analytic_families.tex}
+%Real method
+\input{real_method.tex}
+
+\originalsectionstyle
+
+%Appendix
+\appendix
+\begin{appendix}
+	\section{Limit superior and limit inferior revisited}
+	\begin{definition}
+		Let $(X,d)$ a metric space, $E \subseteq X$, $f: E \rightarrow \mathbb{R}$ and $a \in X$ be a limit point of $E$. Then we define the \emph{upper limit of  $f$ at $a$} as
+
+		\begin{equation*}
+			\limsup_{x \to a}f(x) := \lim_{\varepsilon \todown 0} \left[ \sup\left\{ f(x) : x \in E \cap \dot{B}_\varepsilon(a)\right\}\right]
+		\end{equation*}
+
+		and the \emph{lower limit of  $f$ at $a$} as
+
+		\begin{equation*}
+			\liminf_{x \to a}f(x) := -\limsup_{x \to a}\left( -f \right)(x)
+		\end{equation*}
+	\end{definition}
+
+	\begin{proposition}
+		Let $(X,d)$ a metric space, $E \subseteq X$, $f,g: E \rightarrow \mathbb{R}$, where $f$ is bounded and $a \in X$ be a limit point of $E$. Then 
+
+		\begin{equation*}
+			\limsup_{x \to a} (fg)(x) = \limsup_{x \to a} f(x) \lim_{x \to a} g(x)
+		\end{equation*}
+
+		whenever both sides exist and $\lim_{x \to a}g(x) \geqslant 0$.
+		\label{prop:limsup}
+	\end{proposition}
+
+	\begin{proof}
+		Write
+
+		\begin{equation*}
+			fg = f\lim_{x\to a}g(x) + f\left[ g - \lim_{x \to a}g(x)\right]
+		\end{equation*}
+
+		By \cite[358]{bourbaki:general_topology:1995} we have
+
+		\begin{gather*}
+			\begin{aligned}
+				\limsup_{x \to a} \left( fg \right)(x) &= \limsup_{x \to a}\left( f(x)\lim_{x\to a}g(x) + f(x)\left[ g(x) - \lim_{x \to a}g(x)\right]
+ \right)\\
+				&= \limsup_{x \to a}\left( f(x)\lim_{x \to a}g(x) \right) + \lim_{x \to a}\left( f(x)\left[ g(x) - \lim_{x \to a}g(x)\right]
+ \right)\\
+ 				&= \limsup_{x \to a}\left( f(x) \lim_{x \to a}g(x) \right)
+			\end{aligned}
+		\end{gather*}
+
+		since $\lim_{x \to a}\left[ g(x) - \lim_{x \to a} g(x)\right] = 0$ and $f$ is bounded. Fix $\varepsilon > 0$. Further by \cite[357]{bourbaki:general_topology:1995} and $\lim_{x \to a}g(x) \geqslant 0$ 
+
+		\begin{equation*}
+			\sup\left\{ f(x)\lim_{x \to a}g(x) : x \in E \cap \dot{B}_\varepsilon(a)\right\} = \sup\left\{ f(x) : x \in E \cap \dot{B}_\varepsilon(a)\right\}\lim_{x \to a}g(x)
+		\end{equation*}
+
+		Hence
+
+		\begin{gather}
+			\begin{aligned}
+				\limsup_{x \to a} (fg)(x) &= \limsup_{x \to a}\left( f(x) \lim_{x \to a}g(x) \right)\\
+				&= \lim_{\varepsilon \todown 0} \left[ \sup\left\{ f(x)\lim_{x \to a}g(x) : x \in E \cap \dot{B}_\varepsilon(a)\right\}\right]\\
+				&= \lim_{\varepsilon \todown 0} \left[ \sup\left\{ f(x) : x \in E \cap \dot{B}_\varepsilon(a)\right\}\right]\lim_{x \to a}g(x)\\
+				&= \limsup_{x \to a}f(x) \lim_{x \to a} g(x)
+			\end{aligned}
+		\end{gather}
+	\end{proof}
+
+	\section{Measure Theory}
+	Let $(X,\mu)$ be a measure space. Recall, that if for each measurable set $E$ with $\mu(E) = \infty$ there exists a measurable set $F \subseteq E$ and $0 < \mu(F) < \infty$, $\mu$ is called \emph{semifinite}.
+
+		\begin{lemma}
+			Every $\sigma$-finite measure is semifinite.
+		\end{lemma}
+
+		\begin{proof}
+			Let $X = \bigcup_{n \in \mathbb{N}} X_n$ where $\mu(X_n) < \infty$ and $E$ be measurabele with $\mu(E) = \infty$. By letting $Y_n := \bigcup_{k \leqslant n} X_k$, $Y_n$ is an increasing sequence. Then $E \cap Y_n$ is measurable and since $E \cap Y_n \subseteq Y_n$, $\mu(E \cap Y_n) < \infty$ for each $n \in \mathbb{N}$. By the continuity from below (see \cite[10]{cohn:measure_theory:2013} or \cite[26]{folland:real_analysis:1999}) we have
+
+			\begin{equation*}
+				\infty = \mu(E) = \mu(E \cap X) = \mu\left(E \cap \left(\bigcup_{n \in \mathbb{N}} Y_n\right)\right) = \mu\left(\bigcup_{n \in \mathbb{N}} \left( E \cap Y_n \right)\right) = \lim\limits_{n \rightarrow \infty} \mu\left( E \cap Y_n \right)
+			\end{equation*}
+
+			Hence for every $C > 0$ there exists $N \in \mathbb{N}$, such that $\infty > \mu(E \cap Y_n) > C$ for $n > N$.
+		\end{proof}
+
+\end{appendix}
+
+\printbibliography
+\end{document}
