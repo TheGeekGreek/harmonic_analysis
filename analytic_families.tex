@@ -2,8 +2,7 @@
 The generalization of the classical Riesz-Thorin interpolation theorem to analytic families of operators is due to \emph{E. M. Stein} and \emph{Guido  Weiss}\footnote{\href{https://projecteuclid.org/euclid.tmj/1178244785}{https://projecteuclid.org/euclid.tmj/1178244785}, last accessed \today.}. Crucial for its proof is again an application of advanced topics in complex analysis.
 
 \subsection{Extension of Hadamard's Three Lines Lemma}
-This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will stick for the most part to the proof given in \cite[43--45]{grafakos:fourier:2014}, but for some parts I will use the paper by Stein and Weiss.
-
+This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will stick for the most part to the proof given originally in the paper by Stein and Weiss and for some parts to the proof given in \cite[43--45]{grafakos:fourier:2014}.
 
 \subsubsection{Auxiliary Lemmata} To shorten the proof of the extension of Hadamard's three lines lemma, I will summarize the most important facts used during the proof.
 
@@ -15,7 +14,6 @@ This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will s
 	\end{equation*}
 
 	for $z \in \overline{D} \setminus \{\pm 1\}$ where we are taking that continuous branch of $\log z$ in the complex plane slit along the negative imaginary axis, $\mathbb{C} \setminus \del{\cbr{0} \times \intco{0,\infty}}$. Then $h$ is a holomorphic function in $D$ which maps $\overline{D}\setminus \cbr{\pm 1}$ bijectively onto the closure $\overline{S}$ of the strip $S := \cbr{z \in \mathbb{C} : 0 < \Re z < 1}$.
-
 	\label{lem:h}
 \end{lemma}
 
@@ -40,53 +38,53 @@ This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will s
 \end{proof}
 
 \begin{lemma*}
-	Let $X$ be a topological space. A function $f: X \to [-\infty,\infty)$ is upper semicontinuous if and only if for all $\alpha \in \mathbb{R}$ the set $f^{-1}\left( [-\infty,\alpha )\right)$ is open. 
+	Let $X$ be a topological space. A function $f: X \to \intco[0]{-\infty,\infty}$ is upper semicontinuous if and only if for all $\alpha \in \mathbb{R}$ the set $f^{-1}\del[0]{\intco[0]{-\infty,\alpha}}$ is open. 
 \end{lemma*}
 
 \begin{proof}
-	Suppose $f: X \to [-\infty,\infty)$ is upper semicontinuous and fix $\alpha \in \mathbb{R}$. We have that 
+	Suppose $f: X \to \intco[0]{-\infty,\infty}$ is upper semicontinuous and fix $\alpha \in \mathbb{R}$. We have that 
 
 		\begin{equation*}
-			f^{-1}\left( [-\infty,\alpha )\right) = \bigcup_{x \in \left\{ f < \alpha \right\}} U_x
+			f^{-1}\del[0]{ \intco[0]{-\infty,\alpha}} = \bigcup_{x \in \cbr[0]{ f < \alpha }} U_x
 		\end{equation*}
 
-		\noindent where $U_x$ is a neighbourhood of $x$ such that $f < \alpha$ for any element in $U_x$. Conversly, for $x_0 \in X$ and $\alpha > f(x_0)$ we have that $f^{-1}\left( [-\infty,\alpha )\right)$ is open and $x_0 \in f^{-1}\left( [-\infty,\alpha )\right)$.
+		\noindent where $U_x$ is a neighbourhood of $x$ such that $f < \alpha$ for any element in $U_x$. Conversly, for $x_0 \in X$ and $\alpha > f(x_0)$ we have that $f^{-1}\del[0]{ \intco[0]{-\infty,\alpha }}$ is open and $x_0 \in f^{-1}\del[0]{\intco[0]{-\infty,\alpha}}$.
 \end{proof}
 
 \begin{lemma*}
-	An upper semiconutinuous function $f: X \to [-\infty,\infty)$ on a compact topological space attains its supremum. In particular it is bounded from above.
-		\label{lem:semicom}
+	An upper semiconutinuous function $f: X \to \intco[0]{-\infty,\infty}$ on a compact topological space attains its supremum. In particular it is bounded from above.
+	\label{lem:semicom}
 \end{lemma*}
 
 \begin{proof}
 	 $f(X)$ is bounded from above since otherwise
 
 	\begin{equation*}
-		X = \bigcup_{n \in \mathbb{N}} f^{-1}\left( [-\infty,n)\right)
+		X = \bigcup_{n \in \mathbb{N}} f^{-1}\del[0]{\intco[0]{-\infty,n}}
 	\end{equation*}
 
 	\noindent would not have any finite subcover. Therefore $\sup_{x \in X}f(x)$ exists. Further we have $f(x_0) = \sup_{x \in X}f(x)$ for some $x_0 \in X$ since otherwise
 
 	\begin{equation*}
-		X = \bigcup_{n \in \mathbb{N}} \textstyle f^{-1}\left( [-\infty,\sup_{x \in X}f(x) - 1/n)\right)
+		X = \bigcup_{n \in \mathbb{N}} \textstyle f^{-1}\del[0]{\intco[0]{-\infty,\sup_{x \in X}f(x) - 1/n}}
 	\end{equation*}
 
 	\noindent would not have any finite subcover.	
 \end{proof}
 
 \begin{lemma}
-	Let $\Omega \subseteq \mathbb{C}$ and $f: \Omega \to \mathbb{C}$ continuous. Then $\log\left| f\right|$ is upper semicontinuous on $\Omega$.
+	Let $\Omega \subseteq \mathbb{C}$ and $f: \Omega \to \mathbb{C}$ continuous. Then $\log\abs[0]{ f}$ is upper semicontinuous on $\Omega$.
 	\label{lem:uppersemcont}
 \end{lemma}
 
 \begin{proof}
-	Let us consider the topological space $\left( \Omega, \left| \cdot\right| \right)$. Let $z_0 \in \Omega$ so such that $f(z_0) \neq 0$. Then $\log\left| f\right|$ is continuous as a composition of continuous functions. If $M > f(z_0)$, then $M - \log\left| f(z_0)\right| > 0$ and thus there exists some $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\left| \log\left| f(z)\right| - \log\left| f(z_0)\right|\right| < M- \log\left| f(z_0)\right|$ or equivalently $\log\left| f(z)\right| < M$. Now let $z_0 \in \Omega$ so such that $f(z_0) = 0$. By convention $\log\left| f(z_0)\right| = -\infty$. Furthermore, $M > \log\left| f(z_0)\right|$ for any $M \in \mathbb{R}$. The condition $M > \log\left| f(z)\right|$ is equivalent to $\left| f(z)\right| < e^M$. But $f(z_0) = 0$ and so
+	Let us consider the topological space $\del{ \Omega, \abs[0]{ \cdot}}$. Let $z_0 \in \Omega$ so such that $f(z_0) \neq 0$. Then $\log\abs[0]{ f}$ is continuous as a composition of continuous functions. If $M > f(z_0)$, then $M - \log\abs[0]{ f(z_0)} > 0$ and thus there exists some $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\abs[0]{ \log\abs[0]{ f(z)} - \log\abs[0]{ f(z_0)}} < M- \log\abs[0]{ f(z_0)}$ or equivalently $\log\abs[0]{ f(z)} < M$. Now let $z_0 \in \Omega$ so such that $f(z_0) = 0$. By convention $\log\abs[0]{ f(z_0)} = -\infty$. Furthermore, $M > \log\abs[0]{ f(z_0)}$ for any $M \in \mathbb{R}$. The condition $M > \log\abs[0]{ f(z)}$ is equivalent to $\abs[0]{ f(z)} < e^M$. But $f(z_0) = 0$ and so
 
 	\begin{equation*}
-		\left| f(z)\right| = \left| f(z) - f(z_0)\right|< e^M
+		\abs[0]{ f(z)} = \abs[0]{ f(z) - f(z_0)}< e^M
 	\end{equation*}
 
-	Since $f$ is continuous at $z_0$ and $e^M > 0$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\left| f(z)\right| < e^M$.
+	Since $f$ is continuous at $z_0$ and $e^M > 0$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\abs[0]{ f(z)} < e^M$.
 \end{proof}
 
 \begin{lemma}

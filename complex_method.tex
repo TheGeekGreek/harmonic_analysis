@@ -134,7 +134,7 @@ Consider $0 \leq \Re z \leq 1$ and $B_0 \geq 1$. Then $B_0^{1 - \Re z} \geq 1$ a
 \end{proof}
 
 \subsection{The Riesz-Thorin Interpolation Theorem}
-Here we will answer our question raised in the introduction for the case where $T$ is a linear operator defined on the space of integrable simple functions. The theorem as it is in \cite[37]{grafakos:fourier:2014} will be slightly generalized to not necessarily $\sigma$-finite spaces in the manner of \cite[200]{folland:real_analysis:1999}, but not in the most general formulation possible where $T$ is an operator defined on a larger domain (for this see remark \ref{rem:extension}). To shorten the argumentation we will introduce some notation. For two measure spaces $\del[0]{ X,\mu }$, $\del[0]{ Y,\nu }$ let $\Sigma_X$ and $\Sigma_Y$ denote the set of all finitely simple functions on $X$, $Y$ respectively.
+Here we will answer our question raised in the introduction for the case where $T$ is a linear operator. The theorem as it is in \cite[37]{grafakos:fourier:2014} will be slightly generalized to not necessarily $\sigma$-finite spaces in the manner of \cite[200]{folland:real_analysis:1999}, but not in the most general formulation possible where $T$ is an operator defined on a larger domain. To shorten the argumentation we will introduce some notation. For two measure spaces $\del[0]{ X,\mu }$, $\del[0]{ Y,\nu }$ let $\Sigma_X$ and $\Sigma_Y$ denote the set of all finitely simple functions on $X$, $Y$ respectively. Furthermore recall, that a measure $\mu$ on a measure space $\del{X,\mu}$ is called \emph{semifinite} if for each measurable set $A$ with $\mu(A) = \infty$ there exists a measurable set $B \subseteq A$ with $0 < \mu(B) < \infty$ (see \cite[25]{folland:real_analysis:1999}). 
 
 \vspace{2mm}
 
@@ -170,13 +170,13 @@ Here we will answer our question raised in the introduction for the case where $
 		M_q( T(f)) = \sup\cbr{\abs{ \int_Y T(f)g \d \nu} : g \in \Sigma_Y, \norm[0]{ g}_{L^{q'}} = 1}
 	\end{equation*}
 
-	\noindent appropriately. If either $\theta = 0$ or $\theta = 1$, the estimate (\ref{est:boundTf}) follows directly from the hypotheses (\ref{hyp:Lq0Lq1}) on $T$. Thus we may assume \underline{$0 < \theta < 1$}. Furthermore, if $f \in \Sigma_X$, $\left\| f \right\|_{L^p} = 0$, then $f = 0$ $\mu$-a.e. and either one of the hypotheses on $T$ in (\ref{hyp:Lq0Lq1}) implies $T(f) = 0$ $\mu$-a.e. and thus the estimate (\ref{est:boundTf}) holds trivially. Therefore we can assume \underline{$\left\| f\right\|_{L^p} \neq 0$}. Fix $f \in \Sigma_X$, $g \in \Sigma_Y$ with representation
+	\noindent appropriately. If either $\theta = 0$ or $\theta = 1$, the estimate (\ref{est:boundTf}) follows directly from the hypotheses (\ref{hyp:Lq0Lq1}) on $T$. Thus we may assume \underline{$0 < \theta < 1$}. Furthermore, if $f \in \Sigma_X$, $\norm{ f}_{L^p} = 0$, then $f = 0$ $\mu$-a.e. and either one of the hypotheses on $T$ in (\ref{hyp:Lq0Lq1}) implies $T(f) = 0$ $\mu$-a.e. and thus the estimate (\ref{est:boundTf}) holds trivially. Therefore we can assume \underline{$\norm{f}_{L^p} \neq 0$}. Fix $f \in \Sigma_X$, $g \in \Sigma_Y$ with representation
 	
 \begin{equation*}
 	f = \sum_{j = 1}^n a_j e^{i\alpha_j}\chi_{A_j} \qquad g = \sum_{k = 1}^m b_k e^{i\beta_k}\chi_{B_k}
 \end{equation*}
 
-\noindent where $a_j,b_k \neq 0$, $\alpha_j,\beta_k \in \mathbb{R}$ for any $j = 1,\dots,n$, $k = 1,\dots,m$, the sets $A_j$ and $B_k$ are each pairwise disjoint with $\mu\left( A_j \right),\nu\left( B_k \right) < \infty$ and so, that $\left\| g\right\|_{L^{q'}} \neq 0$ (recall $q' := q/\left( q - 1 \right)$). Define
+\noindent where $a_j,b_k \neq 0$, $\alpha_j,\beta_k \in \mathbb{R}$ for any $j = 1,\dots,n$, $k = 1,\dots,m$, the sets $A_j$ and $B_k$ are each pairwise disjoint with $\mu( A_j),\nu(B_k) < \infty$ and so, that $\norm[0]{g}_{L^{q'}} \neq 0$ (recall $q' := q/\del[0]{ q - 1 }$). Define
 
 \begin{equation*}
 	P(z) := \frac{p}{p_0}(1 - z) + \frac{p}{p_1}z \qquad Q(z) := \frac{q'}{q'_0}(1 - z) + \frac{q'}{q'_1}z
@@ -206,7 +206,7 @@ Applying H\"older's inequality yields
 
 \begin{equation}
 	\begin{aligned}
-		\left| \int_YT(\chi_{A_j})\chi_{B_k}\d\nu \right| &\leq \int_Y\left| T(\chi_{A_j})\chi_{B_k}\right|\d\nu\\
+		\abs{ \int_YT(\chi_{A_j})\chi_{B_k}\d\nu} &\leq \int_Y\abs[0]{ T(\chi_{A_j})\chi_{B_k}}\d\nu\\
 		&= \norm[0]{T(\chi_{A_j})\chi_{B_k}}_{L^1}\\
 		&\leq \norm[0]{T\del[0]{\chi_{A_j}}}_{L^{q_0}} \norm[0]{\chi_{B_k}}_{L^{q_0'}}\\
 		&\leq M_0\norm[0]{\chi_{A_j}}_{L^{p_0}} \norm[0]{\chi_{B_k}}_{L^{q_0'}}\\
@@ -215,49 +215,49 @@ Applying H\"older's inequality yields
 	\end{aligned}
 \end{equation}
 
-\noindent for each $j = 1,\hdots,n$, $k = 1,\hdots,m$ (even in the cases where either $p_0 = \infty$ or $q_0' = \infty$, or both, by observing that $\left\| \chi_{A}\right\|_{L^\infty} \leq 1$ for any measurable set $A$). Thus the function $F$ is well-defined on $\mathbb{C}$. Let $t \in \mathbb{R}$. For $p,p_0 \neq \infty$
+\noindent for each $j = 1,\hdots,n$, $k = 1,\hdots,m$ (even in the cases where either $p_0 = \infty$ or $q_0' = \infty$, or both, by observing that $\norm[0]{ \chi_{A}}_{L^\infty} \leq 1$ for any measurable set $A$). Thus the function $F$ is well-defined on $\mathbb{C}$. Let $t \in \mathbb{R}$. For $p,p_0 \neq \infty$
 
 \begin{gather*}
 	\begin{aligned}
-		\left\|f_{it}\right\|_{L^{p_0}} &= \left(\sum_{j = 1}^n \int_{A_j} \left| f_{it} \right|^{p_0} \d\mu + \int_{X \setminus \bigcup_{j = 1}^n A_j} \left| f_{it} \right|^{p_0} \d\mu\right)^{1/p_0}\\
-		&= \left(\sum_{j = 1}^n \left| a_j^{P(it)} e^{i\alpha_j}\right|^{p_0}\int_X \chi_{A_j} \d\mu\right)^{1/p_0}\\
-		&= \left(\sum_{j = 1}^n a_j^{p_0\Re P(it)}\mu\left(A_j\right)\right)^{1/p_0}\\
-		&= \left(\sum_{j = 1}^n a_j^p\mu\left(A_j\right)\right)^{p/\left(p_0p\right)}\\
-		&= \left\|f\right\|_{L^p}^{p/p_0} 
+		\norm[0]{f_{it}}_{L^{p_0}} &= \left(\sum_{j = 1}^n \int_{A_j} \abs[0]{ f_{it}}^{p_0} \d\mu + \int_{X \setminus \bigcup_{j = 1}^n A_j} \abs[0]{ f_{it} }^{p_0} \d\mu\right)^{1/p_0}\\
+		&= \del{\sum_{j = 1}^n \abs[0]{ a_j^{P(it)} e^{i\alpha_j}}^{p_0}\int_X \chi_{A_j} \d\mu}^{1/p_0}\\
+		&= \del{\sum_{j = 1}^n a_j^{p_0\Re P(it)}\mu(A_j)}^{1/p_0}\\
+		&= \del{\sum_{j = 1}^n a_j^p\mu(A_j)}^{p/\left(p_0p\right)}\\
+		&= \norm[0]{f}_{L^p}^{p/p_0} 
 	\end{aligned}
 \end{gather*}
 
-\noindent holds. Let $p_0 = \infty$, $p \neq \infty$. Then $\left\|f_{it}\right\|_{L^{\infty}} = 1$ since $\left| a_j^{P(it)}\right| = a_j^{p/p_0} = 1$ and that there exists some index $j$, such that $\mu\left( A_j \right) \neq 0$. If $p = \infty$, then $p_0 = p_1 = \infty$ and thus $P(it) = 1$. By the same considerations we have $\|g_{it}\|_{L^{q_0'}} = \|g\|_{L^{q'}}^{q'/q'_0}$. Hence
+\noindent holds. Let $p_0 = \infty$, $p \neq \infty$. Then $\norm[0]{f_{it}}_{L^{\infty}} = 1$ since $\abs[0]{ a_j^{P(it)}} = a_j^{p/p_0} = 1$ and that there exists some index $j$, such that $\mu( A_j) \neq 0$. If $p = \infty$, then $p_0 = p_1 = \infty$ and thus $P(it) = 1$. By the same considerations we have $\norm[0]{g_{it}}_{L^{q_0'}} = \norm[0]{g}_{L^{q'}}^{q'/q'_0}$. Hence
 
 \begin{gather*}
 	\begin{aligned}
-		\left| F(it) \right| &\leq \int_Y \left| T(f_{it})g_{it}\right| \d\nu\\
-		&= \left\|T(f_{it}) g_{it}\right\|_{L^1}\\
-		&\leq \left\|T(f_{it})\right\|_{L^{q_0}}\left\|g_{it}\right\|_{L^{q_0'}}\\
-		&\leq M_0 \left\|f_{it}\right\|_{L^{p_0}} \left\|g_{it}\right\|_{L^{q_0'}}\\
-		&= M_0 \left\|f\right\|_{L^p}^{p/p_0} \left\|g\right\|_{L^{q'}}^{q'/q'_0}
+		\abs[0]{ F(it)} &\leq \int_Y \abs[0]{ T(f_{it})g_{it}} \d\nu\\
+		&= \norm[0]{T(f_{it}) g_{it}}_{L^1}\\
+		&\leq \norm[0]{T(f_{it})}_{L^{q_0}}\norm[0]{g_{it}}_{L^{q_0'}}\\
+		&\leq M_0 \norm[0]{f_{it}}_{L^{p_0}} \norm[0]{g_{it}}_{L^{q_0'}}\\
+		&= M_0 \norm[0]{f}_{L^p}^{p/p_0} \norm[0]g_{L^{q'}}^{q'/q'_0}
 	\end{aligned}
 \end{gather*}
 
 \noindent by H\"older's inequality. In an analogous manner we derive
 				
 \begin{equation*}
-	\left\|f_{1 + it}\right\|_{L^{p_1}} = \left\|f\right\|_{L^p}^{p/p_1} \qquad \left\|g_{1 + it}\right\|_{L^{q_1'}} = \left\|g\right\|_{L^{q'}}^{q'/q_1'}
+	\abs[0]{f_{1 + it}}_{L^{p_1}} = \norm[0]{f}_{L^p}^{p/p_1} \qquad \norm[0]{g_{1 + it}}_{L^{q_1'}} = \norm[0]{g}_{L^{q'}}^{q'/q_1'}
 \end{equation*}
 
 \noindent and thus 
 				
 \begin{equation*}
-	\left| F(1 + it)\right| \leq M_1 \left\|f\right\|_{L^p}^{p/p_1}\left\|g\right\|_{L^{q'}}^{q'/q_1'}
+	\abs[0]{ F(1 + it)} \leq M_1 \norm[0]{f}_{L^p}^{p/p_1}\norm[0]{g}_{L^{q'}}^{q'/q_1'}
 \end{equation*}	
 
 Further by estimate (\ref{est:constant_F}) 
 
 \begin{equation*}
 	\begin{aligned}
-		\left| F(z)\right| &\leq \sum_{j = 1}^n\sum_{k = 1}^m \left| a_j^{P(z)}\right| \left| b_k^{Q(z)}\right| \left| \int_Y T(\chi_{A_j})\chi_{B_k} \d\nu\right|\\
-		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m a_j^{\Re P(z)}b_k^{\Re Q(z)}\mu\left(A_j\right)^{1/p_0}\nu\left(B_k\right)^{1/q_0'}\\
-		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m \max\left\{ 1, a_j^{p/p_0 + p/p_1}\right\} \max\left\{1,b_k^{q'/q_0' + q'/q_1'}\right\}\mu\left(A_j\right)^{1/p_0}\nu\left(B_k\right)^{1/q_0'}
+		\abs[0]{ F(z)} &\leq \sum_{j = 1}^n\sum_{k = 1}^m \abs[0]{ a_j^{P(z)}} \abs[0]{ b_k^{Q(z)}} \abs{\int_Y T(\chi_{A_j})\chi_{B_k} \d\nu}\\
+		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m a_j^{\Re P(z)}b_k^{\Re Q(z)}\mu(A_j)^{1/p_0}\nu(B_k)^{1/q_0'}\\
+		&\leq M_0\sum_{j = 1}^n\sum_{k = 1}^m \max\cbr[0]{ 1, a_j^{p/p_0 + p/p_1}} \max\cbr[0]{1,b_k^{q'/q_0' + q'/q_1'}}\mu(A_j)^{1/p_0}\nu(B_k)^{1/q_0'}
 	\end{aligned}
 \end{equation*}
 
@@ -265,48 +265,48 @@ Further by estimate (\ref{est:constant_F})
 Hence $F$ is bounded on $\overline{S}$ by some constant depending on $f$ and $g$ only. By 
 
 \begin{multline*}
-	F'(z) = \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_j\log \left( a_j \right) \left( \frac{p}{p_1} - \frac{p}{p_0} \right) b_k^{Q(z)}e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu \\
-	+  \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_jb_k^{Q(z)}\log\left( b_k \right)\left( \frac{q'}{q'_1} - \frac{q'}{q'_0} \right)e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu 
+	F'(z) = \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_j\log (a_j) \del{\frac{p}{p_1} - \frac{p}{p_0}} b_k^{Q(z)}e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu \\
+	+  \sum_{j = 1}^n\sum_{k = 1}^m a^{P(z)}_jb_k^{Q(z)}\log(b_k)\del{ \frac{q'}{q'_1} - \frac{q'}{q'_0}}e^{i\alpha_j} e^{i\beta_k} \int_YT(\chi_{A_j})\chi_{B_k}\d\nu 
 \end{multline*}
 
-\noindent it is immediate, that $F$ is an entire function and thus holomorphic in $S$ and continuous on $\overline{S}$. Therefore, Hadamard's three lines lemma yields
+\noindent it is immediate, that $F$ is an entire function and thus holomorphic in $S$ and continuous on $\overline{S}$. Therefore lemma \ref{lem:HTL} yields
 
 \begin{gather*}
-	\left| F(z) \right| \leq \left( M_0  \left\|f\right\|_{L^p}^{p/p_0} \left\|g\right\|_{L^{q'}}^{q'/q'_0} \right)^{1 - \theta}\left(  M_1 \left\|f\right\|_{L^p}^{p/p_1}\left\|g\right\|_{L^{q'}}^{q'/q_1'} \right)^\theta = M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}\left\|g\right\|_{L^{q'}}
+	\abs[0]{ F(z)} \leq \del{ M_0  \norm[0]{f}_{L^p}^{p/p_0} \norm[0]{g}_{L^{q'}}^{q'/q'_0}}^{1 - \theta}\del{ M_1 \norm[0]{f}_{L^p}^{p/p_1}\norm[0]{g}_{L^{q'}}^{q'/q_1'}}^\theta = M_0^{1 - \theta}M_1^\theta \norm[0]{f}_{L^p}\norm[0]{g}_{L^{q'}}
 \end{gather*}
 
 \noindent for $\Re z = \theta$, $0 < \theta < 1$. We have
 
 \begin{equation*}
-	\left\{ T(f) \neq 0\right\} = \bigcup_{n = 1}^\infty \left\{ \left| T(f)\right| > 1/n\right\}
+	\cbr[0]{ T(f) \neq 0} = \bigcup_{n = 1}^\infty \cbr[0]{ \abs[0]{ T(f)} > 1/n}
 \end{equation*}
 
-\noindent and by Chebychev's inequality either
+\noindent and by Chebychev's inequality (see \cite[193]{folland:real_analysis:1999}) either
 
 \begin{equation*}
-	\nu\left( \left\{ \left| T(f)\right| > 1/n\right\} \right) \leq n^{q_0}\left\| T(f)\right\|_{L^{q_0}}^{q_0} \leq n^{q_0}M_0^{q_0}\left\| f\right\|_{L^{p_0}}^{q_0}
+	\nu\del[0]{\cbr[0]{\abs[0]{ T(f)} > 1/n}} \leq n^{q_0}\norm[0]{ T(f)}_{L^{q_0}}^{q_0} \leq n^{q_0}M_0^{q_0}\norm[0]{ f}_{L^{p_0}}^{q_0}
 \end{equation*}
 
 \noindent or
 
 \begin{equation*}
-	\nu\left( \left\{ \left| T(f)\right| > 1/n\right\} \right) \leq n^{q_1}\left\| T(f)\right\|_{L^{q_1}}^{q_1} \leq  n^{q_1}M_1^{q_1}\left\| f\right\|_{L^{p_1}}^{q_1}
+	\nu\del[0]{\cbr[0]{\abs[0]{ T(f)} > 1/n}} \leq n^{q_1}\norm[0]{ T(f)}_{L^{q_1}}^{q_1} \leq n^{q_1}M_1^{q_1}\norm[0]{ f}_{L^{p_1}}^{q_1}
 \end{equation*}
 
-\noindent whenever $q_0 \neq \infty$ or $q_1 \neq \infty$. Therefore, the set $\left\{ T(f) \neq 0\right\}$ is $\sigma$-finite unless $q_0 = q_1 = \infty$. Further we have $P(\theta) = Q(\theta) = 1$. Thus by
+\noindent whenever $q_0 \neq \infty$ or $q_1 \neq \infty$. Therefore, the set $\cbr[0]{ T(f) \neq 0}$ is $\sigma$-finite unless $q_0 = q_1 = \infty$. Further we have $P(\theta) = Q(\theta) = 1$. Thus by
 
 \begin{gather*}
 	\begin{aligned}
-		M_q\left( T(f) \right) &= \sup\left\{\left| \int_Y T(f)g\d\nu\right| : g \in \Sigma_Y, \left\|g\right\|_{L^{q'}} = 1\right\}\\
-		&=  \sup\left\{\left| F(\theta)\right| : g \in \Sigma_Y, \left\|g\right\|_{L^{q'}} = 1\right\}\\
-		&\leq M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}\\
+		M_q( T(f)) &= \sup\cbr{ \abs{\int_Y T(f)g\d\nu} : g \in \Sigma_Y, \norm[0]{g}_{L^{q'}} = 1}\\
+		&=  \sup\cbr[0]{\abs[0]{ F(\theta)} : g \in \Sigma_Y, \norm[0]{g}_{L^{q'}} = 1}\\
+		&\leq M_0^{1 - \theta}M_1^\theta \norm[0]{f}_{L^p}\\
 	\end{aligned}
 \end{gather*}
 
 \noindent we conclude 
 	
 \begin{equation*}
-	\left\| T(f)\right\|_{L^q} = M_q\left( T(f) \right) \leq M_0^{1 - \theta}M_1^\theta \left\|f\right\|_{L^p}
+	\norm[0]{ T(f)}_{L^q} = M_q( T(f)) \leq M_0^{1 - \theta}M_1^\theta \norm[0]{f}_{L^p}
 \end{equation*}
 	
 \noindent for any $f \in \Sigma_X$.
@@ -318,7 +318,7 @@ Hence $F$ is bounded on $\overline{S}$ by some constant depending on $f$ and $g$
 \end{remark}
 
 \begin{remark}
-	Using the previous remark, a standard application of the Riesz-Thorin interpolation theorem is to prove Young's inequality for convolutions \textup{\cite[22--23]{grafakos:fourier:2014}}. Let $G$ be a locally compact group and $\lambda$ be a left invariant Haar measure on $G$, furthermore we assume that $G$ is a countable union of compact subsets, hence the pair $\left( G,\lambda \right)$ forms a $\sigma$-finite measure space.
+	Using the previous remark, a standard application of the Riesz-Thorin interpolation theorem is to prove Young's inequality for convolutions \textup{\cite[22--23]{grafakos:fourier:2014}}. Let $G$ be a locally compact group and $\lambda$ be a left invariant Haar measure on $G$, furthermore we assume that $G$ is a countable union of compact subsets, hence the pair $\del{ G,\lambda }$ forms a $\sigma$-finite measure space.
 
 \begin{theorem*}\emph{(Young's inequality)}
 	Let $1 \leq p,q,r \leq \infty$ satisfy
@@ -328,52 +328,52 @@ Hence $F$ is bounded on $\overline{S}$ by some constant depending on $f$ and $g$
 		\label{hyp:young}
 	\end{equation}
 
-	Then for all $f \in L^p\left( G \right)$, $g \in L^r\left( G \right)$
-	satisfying $\norm{g}_{L^r} = \norm{\tilde{g}}$ we have $f \ast g$ exists $\lambda$-a.e. and satisfies
+	Then for all $f \in L^p(G)$, $g \in L^r( G )$
+	satisfying $\norm[0]{g}_{L^r} = \norm[0]{\tilde{g}}$ we have $f \ast g$ exists $\lambda$-a.e. and satisfies
 
 	\begin{equation*}
-		\norm{f \ast g}_{L^1} \leq \norm{g}_{L^r} \norm{f}_{L^p}
+		\norm[0]{f \ast g}_{L^1} \leq \norm[0]{g}_{L^r} \norm[0]{f}_{L^p}
 	\end{equation*}
 \end{theorem*}
 	
 \begin{proof}
-	Fix $g \in L^r\left( G \right)$ and let $T(f) := f \ast g$ be defined on $L^1\left( G \right) + L^{r'}\left( G \right)$. Obviously, $T$ is a linear operator by the linearity of the integral. By Minkowski's integral inequality (see exercise \textbf{1.1.6} \cite[13]{grafakos:fourier:2014}) we get
+	Fix $g \in L^r( G )$ and let $T(f) := f \ast g$ be defined on $L^1( G ) + L^{r'}( G )$. Obviously, $T$ is a linear operator by the linearity of the integral. By Minkowski's integral inequality (see exercise \textbf{1.1.6} \cite[13]{grafakos:fourier:2014}) we get
 
 	\begin{equation*}
 		\begin{aligned}
-			\|T(f)\|_{L^r} &= \left(\int_G \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert^r d\lambda(x)\right)^{1/r}\\
-			&\leq \int_G \left( \int_G \vert f(y) \vert^r \vert g(y^{-1}x) \vert^r d\lambda(x)\right)^{1/r} d\lambda(y)\\
-			&= \int_G \vert f(y) \vert \left( \int_G \vert g(y^{-1}x) \vert^r d\lambda(y^{-1}x) \right)^{1/r} d\lambda(y)\\
-			&= \int_G \vert f(y) \vert \left( \int_G \vert g(z) \vert^r d\lambda(z) \right)^{1/r} d\lambda(y)\\
-			&\leq \|f\|_{L^1} \|g\|_{L^r}
+			\norm[0]{T(f)}_{L^r} &= \del{\int_G \abs{ \int_G f(y)g(y^{-1}x) \d\lambda(y)}^r \d\lambda(x)}^{1/r}\\
+			&\leq \int_G \del{ \int_G \abs[0]{ f(y) }^r \abs[0]{ g(y^{-1}x) }^r \d\lambda(x)}^{1/r} \d\lambda(y)\\
+			&= \int_G \abs[0]{ f(y)} \del{ \int_G \abs[0]{ g(y^{-1}x)}^r \d\lambda(y^{-1}x) }^{1/r} \d\lambda(y)\\
+			&= \int_G \abs[0]{ f(y) } \del{ \int_G \abs[0]{ g(z) }^r \d\lambda(z) }^{1/r} \d\lambda(y)\\
+			&\leq \norm[0]{f}_{L^1} \norm[0]{g}_{L^r}
 		\end{aligned} 
 	\end{equation*}
 
-	for $f \in L^1(g,\mu)$ and $1 \leqslant p < \infty$. The case $r = \infty$ follows from
+	\noindent for $f \in L^1(g,\mu)$ and $1 \leq p < \infty$. The case $r = \infty$ follows from
 	
 	\begin{equation*}
-		\vert (f \ast g)(x) \vert = \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert \leq \int_G \vert f(y)\vert \vert g(y^{-1}x)\vert d\lambda(y) \leq \|g\|_{L^\infty}\|f\|_{L^1}
+		\abs[0]{ (f \ast g)(x) } = \abs{ \int_G f(y)g(y^{-1}x) \d\lambda(y)} \leq \int_G \abs[0]{ f(y)} \abs[0]{g(y^{-1}x)} \d\lambda(y) \leq \norm[0]{g}_{L^\infty}\norm[0]{f}_{L^1}
 	\end{equation*}
 	
 	By stipulating $h(y) := g(y^{-1}x)$ we have 
 
 	\begin{equation*}
 		\begin{aligned}
-			\abs{(f \ast g)(x)} &= \left\vert \int_G f(y)g(y^{-1}x) d\lambda(y)\right\vert \leq \int_G \vert f(y)g(y^{-1}x)\vert d\lambda(y)\\
-			&= \|fh\|_{L^1} \leq \|f\|_{L^{r'}} \|h\|_{L^r} = \|f\|_{L^{r'}} \|\tilde{g}\|_{L^r} = \|g\|_{L^r} \|f\|_{L^{r'}}
+			\abs{(f \ast g)(x)} &= \abs{ \int_G f(y)g(y^{-1}x) \d\lambda(y)} \leq \int_G \abs[0]{ f(y)g(y^{-1}x)} \d\lambda(y)\\
+			&= \norm[0]{fh}_{L^1} \leq \norm[0]{f}_{L^{r'}} \norm[0]{h}_{L^r} = \norm[0]{f}_{L^{r'}} \norm[0]{\tilde{g}}_{L^r} = \norm[0]{g}_{L^r} \norm[0]{f}_{L^{r'}}
 		\end{aligned}
 	\end{equation*}
 
-	for $r < \infty$ and $f \in L^{r'}\left( G \right)$, since
+	\noindent for $r < \infty$ and $f \in L^{r'}( G )$, since
 
 	\begin{equation*}
-		\|h\|^r_{L^r} = \int_G \vert g(y^{-1}x)\vert^r d\lambda(y) = \int_G \vert\tilde{g}(x^{-1}y)\vert d\lambda(y) = \|\tilde{g}\|^r_{L^{r}}
+		\norm[0]{h}^r_{L^r} = \int_G \abs[0]{ g(y^{-1}x)}^r \d\lambda(y) = \int_G \abs[0]{\tilde{g}(x^{-1}y)} \d\lambda(y) = \norm[0]{\tilde{g}}^r_{L^{r}}
 	\end{equation*}
 
 	The Riesz-Thorin interpolation theorem now yields for any $0 < \theta < 1$
 
 	\begin{equation}
-		\norm{f \ast g}_{L^q} = \norm{T(f)}_{L^q} \leqslant \norm{g}_{L^r}^{1 - \theta}\norm{g}_{L^r}^{\theta} \norm{f}_{L^p} = \norm{g}_{L^r}\norm{f}_{L^p}
+		\norm[0]{f \ast g}_{L^q} = \norm[0]{T(f)}_{L^q} \leq \norm[0]{g}_{L^r}^{1 - \theta}\norm[0]{g}_{L^r}^{\theta} \norm[0]{f}_{L^p} = \norm[0]{g}_{L^r}\norm[0]{f}_{L^p}
 	\end{equation}
 
 	\noindent where 
