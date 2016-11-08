@@ -1,14 +1,14 @@
 \section{The Complex Method}
-This theorem will unfortunately only be applicable to linear operators but will yield a more natural bound of the operator on the intermediate space. The proof will make strong use of complex variables technique. A major tool will be an application of the maximum modulus principle, known as \emph{Hadamard's three lines lemma}.
+This theorem will unfortunately only be applicable to linear operators but will yield quite a natural bound of the operator on the intermediate space. The proof will make strong use of complex variables technique. A major tool will be an application of the maximum modulus principle, known as \emph{Hadamard's three lines lemma}.
 
 \subsection{Hadamard's Three Lines Lemma}
-The proof of the Riesz-Thorin interpolation theorem heavily relies on Hadamard's three lines lemma which is itself based on a restatement of the maximum modulus theorem (see \cite[212]{rudin:rc_analysis:1987}) found in \cite[253]{rudin:rc_analysis:1987}. To do so, we have first to establish some common terminology. A complex-valued function $f$ is said to be \emph{holomorphic} in $\Omega \subseteq \mathbb{C}$ open, if $f'\del{z}$ exists for any $z \in \Omega$. By a region we shall mean a nonempty connected open subset of the complex plane. The restatement reads as follows.
+The proof of the Riesz-Thorin interpolation theorem heavily relies on Hadamard's three lines lemma which is itself based on a restatement of the maximum modulus theorem (see \cite[212]{rudin:rc_analysis:1987}) formulated in \cite[253]{rudin:rc_analysis:1987}. To do so, we have first to establish some common terminology. A complex-valued function $f$ is said to be \emph{holomorphic} in $\Omega \subseteq \mathbb{C}$ open, if $f'(z)$ exists for any $z \in \Omega$. By a region we shall mean a nonempty connected open subset of the complex plane. The restatement reads as follows.
 
 \begin{theorem*}
 	Let $\Omega \subseteq \mathbb{C}$ be a bounded region and $f$ be a continuous function on $\overline{\Omega}$ which is holomorphic in $\Omega$. Then 
 
 	\begin{equation*}
-		\abs[0]{f\del{z}} \leq \sup\cbr[0]{ \abs[0]{f\del{z}} : z \in \partial\Omega}
+		\abs[0]{f(z)} \leq \sup\cbr[0]{ \abs[0]{f(z)} : z \in \partial\Omega}
 	\end{equation*}
 
 	\noindent for every $z \in \Omega$. If equality holds at one point $z \in \Omega$, then $f$ is constant.
@@ -16,7 +16,7 @@ The proof of the Riesz-Thorin interpolation theorem heavily relies on Hadamard's
 
 \begin{mdframed}
 	\begin{lemma}\emph{(Hadamard's three lines lemma)}
-		Let $F$ be a holomorphic function in the strip $S := \{z \in \mathbb{C}: 0 < \Re z < 1\}$, continuous and bounded on $\overline{S}$, such that $\left| F(z)\right| \leq B_0$ when $\Re z = 0$ and $\left| F(z) \right| \leq B_1$ when $\Re z = 1$, for some $0 < B_0,B_1 < \infty$. Then $\left| F(z) \right| \leq B_0^{1 - \theta}B_1^\theta$ when $\Re z = \theta$, for any $0 < \theta < 1$.
+		Let $F$ be a holomorphic function in the strip $S := \cbr[0]{ z \in \mathbb{C}: 0 < \Re z < 1}$, continuous and bounded on $\overline{S}$, such that $\abs[0]{F(z)} \leq B_0$ when $\Re z = 0$ and $\abs[0]{F(z)} \leq B_1$ when $\Re z = 1$, for some $0 < B_0,B_1 < \infty$. Then $\abs[0]{F(z)}\leq B_0^{1 - \theta}B_1^\theta$ when $\Re z = \theta$, for any $0 < \theta < 1$.
 		\label{lem:HTL}
 	\end{lemma}
 \end{mdframed}
@@ -42,56 +42,56 @@ The proof of the Riesz-Thorin interpolation theorem heavily relies on Hadamard's
 For $z \in \overline{S}$ define 
 
 \begin{equation*}
-	G(z) := \frac{F(z)}{B_0^{1 - z}B_1^z} \qquad G_n(z) := G(z) e^{\left(z^2 - 1\right)/n},~n \in\mathbb{N}_{>0}
+	G(z) := \frac{F(z)}{B_0^{1 - z}B_1^z} \qquad G_n(z) := G(z) e^{\del[0]{z^2 - 1}/n},~n \in\mathbb{N}_{>0}
 \end{equation*}
 
-$G(z)$ and $G_n(z)$ are holomorphic in $S$ by
+$G\del{z}$ and $G_n\del{z}$ are holomorphic in $S$ by
 	
 \begin{equation*}
-	G'(z) = \frac{F'(z) - F(z)\log\left( B_1/B_0 \right)}{B_0^{1 - z}B_1^z} \qquad G_n'(z) = G'(z)e^{\left( z^2 - 1 \right)/n} + \frac{2}{n}zG_n(z)	
+	G'(z) = \frac{F'(z) - F(z)\log\del{ B_1/B_0}}{B_0^{1 - z}B_1^z} \qquad G_n'(z) = G'(z)e^{\del[0]{z^2 - 1 }/n} + \frac{2}{n}zG_n(z)	
 \end{equation*}
 
 \noindent and $e^z \neq 0$ for every $z \in \mathbb{C}$. Further, we have
 
 \begin{equation*}
-		\left| B_0^{1 - z}B_1^z \right| = \left(B_0^{1 - z}B_0^{1 - \overline{z}} B_1^z B_1^{\overline{z}}\right)^{1/2} =  B_0^{1 -\Re z}B_1^{\Re z}
+	\abs[0]{B_0^{1 - z}B_1^z} = \del[0]{B_0^{1 - z}B_0^{1 - \overline{z}} B_1^z B_1^{\overline{z}}}^{1/2} =  B_0^{1 -\Re z}B_1^{\Re z}
 \end{equation*}
 
 Consider $0 \leq \Re z \leq 1$ and $B_0 \geq 1$. Then $B_0^{1 - \Re z} \geq 1$ and $B_0^{1 - \Re z } \geq B_0$ in the case $B_0 < 1$. Similarily, $B_1^{\Re z} \geq 1$ if $B_1 \geq 1$ and $B_1^{\Re z} \leq B_1$ if $B_1 < 1$. Hence 
 
 \begin{equation}
-	\left| B_0^{1 - z}B_1^z \right| \geq \min\left\{1,B_0\right\}\min\left\{1,B_1\right\} > 0
+	\abs[0]{B_0^{1 - z}B_1^z} \geq \min\cbr[0]{1,B_0}\min\cbr[0]{1,B_1} > 0
 	\label{est:denom}
 \end{equation}
 
-\noindent for all $z \in \overline{S}$. Since $F$ is bounded on $\overline{S}$, we have $\left| F(z) \right| \leq L$ for some $L > 0$ and all $z \in \overline{S}$. Thus by (\ref{est:denom})
+\noindent for all $z \in \overline{S}$. Since $F$ is bounded on $\overline{S}$, we have $\abs[0]{F(z)} \leq L$ for some $L > 0$ and all $z \in \overline{S}$. Thus by (\ref{est:denom})
 
 \begin{equation*}
-	\left| G(z)\right| = \frac{\left| F(z)\right|}{\left| B_0^{1 - z}B_1^z \right|} \leq \frac{L}{\min\left\{1,B_0\right\}\min\left\{1,B_1\right\}} =: M
+	\abs[0]{G(z)} = \frac{\abs[0]{F(z)}}{\abs[0]{B_0^{1 - z}B_1^z}} \leq \frac{L}{\min\cbr[0]{1,B_0}\min\cbr[0]{1,B_1}} =: M
 \end{equation*}
 
 \noindent for every $z \in \overline{S}$. Fix $n \in \mathbb{N}_{>0}$ and write $z := x + iy \in \overline{S}$. Then
 
 \begin{gather*}
-	\left| G_n(z)\right| \leq M \left(e^{\left(x^2 + 2ixy -y^2 - 1\right)/n} e^{\left(x^2 - 2ixy -y^2 - 1\right)/n}\right)^{1/2}= M e^{-y^2/n}e^{\left(x^2 - 1\right)/n} \leq Me^{-y^2/n}
+	\abs[0]{G_n(z)} \leq M \del{e^{\del[0]{x^2 + 2ixy -y^2 - 1}/n} e^{\del[0]{x^2 - 2ixy -y^2 - 1}/n}}^{1/2}= M e^{-y^2/n}e^{\del[0]{x^2 - 1}/n} \leq Me^{-y^2/n}
 \end{gather*}
 
 \noindent for $0 \leq x \leq 1$. Thus
 	
 \begin{equation*}
-	\lim_{y \to \pm \infty}\sup\{\left| G_n(z)\right| : 0 \leq x \leq 1\} = 0
+	\lim_{y \to \pm \infty}\sup\cbr[0]{\abs[0]{G_n(z)} : 0 \leq x \leq 1} = 0
 \end{equation*}
 
-\noindent by the pinching-principle. Hence there exist $C_0(n),C_1(n) \in \mathbb{R}$, such that 
+\noindent Hence there exist $C_0(n),C_1(n) \in \mathbb{R}$, such that 
 
 \begin{equation*}
-	\sup\{\left| G_n(z)\right| : 0 \leq x \leq 1\} \leq 1
+	\sup\cbr[0]{\abs[0]{G_n(z)} : 0 \leq x \leq 1} \leq 1
 \end{equation*}
 
-\noindent when $y > C_0(n)$ or $y < C_1(n)$. Letting
+\noindent whenever $y > C_0(n)$ or $y < C_1(n)$. Letting
 
 \begin{equation*}
-	C(n) := \max\left\{ \left| C_0(n)\right| + 1, \left| C_1(n) \right| + 1\right\}
+	C(n) := \max\cbr[0]{\abs[0]{ C_0(n)} + 1, \abs[0]{ C_1(n) } + 1}
 \end{equation*}
 
 \begin{figure}[h!tb]
@@ -112,45 +112,45 @@ Consider $0 \leq \Re z \leq 1$ and $B_0 \geq 1$. Then $B_0^{1 - \Re z} \geq 1$ a
 	\label{fig:Hadamards_three_lines_lemma_proof}
 \end{figure}
 
-\noindent we conclude $\left| G_n(z) \right| \leq 1$ for all $0 \leq x \leq 1$ when $\left| y \right| \geq C(n)$. Now consider the rectangle $R := \left(0,1\right) \times \left(-C(n),C(n)\right)$. We have $\left| G_n(z) \right| \leq 1$ on the lines $[0,1] \times \{\pm C(n)\}$. By
+\noindent we conclude $\abs[0]{ G_n(z)} \leq 1$ for all $0 \leq x \leq 1$ when $\abs{ y } \geq C(n)$. Now consider the rectangle $R := \intoo{0,1} \times \intoo[0]{-C(n),C(n)}$. We have $\abs[0]{G_n(z)} \leq 1$ on the lines $\intcc{0,1} \times \cbr[0]{\pm C(n)}$. By
 
 \begin{equation*}
-	\left| G_n(iy)\right| = \frac{\left| F(iy)\right|}{\left| B_0^{1 - iy} B_1^{iy}\right|}e^{-\left( y^2 + 1 \right)/n} \leq 1 \qquad \left| G_n(1 + iy)\right| =	\frac{\left| F(1 + iy)\right|}{\left| B_0^{-iy}B_1^{1 + iy}\right|}e^{-y^2/n} \leq 1
+	\abs[0]{ G_n(iy)} = \frac{\abs[0]{F(iy)}}{\abs[0]{B_0^{1 - iy} B_1^{iy}}}e^{-\del[0]{y^2 + 1 }/n} \leq 1 \qquad \abs[0]{ G_n(1 + iy)} =	\frac{\abs[0]{ F(1 + iy)}}{\abs[0]{ B_0^{-iy}B_1^{1 + iy}}}e^{-y^2/n} \leq 1
 \end{equation*}
 
-\noindent we have $\left| G_n(z)\right| \leq 1$ on the lines $\{0\} \times [-C(n),C(n)]$, $\{1\} \times [-C(n),C(n)]$. Thus $\left| G_n(z) \right| \leq 1$ on $\partial R$. Since $\left| G_n(z)\right|$ is continuous on $\overline{R}$, holomorphic in $R$ and $R$ is a bounded region, the maximum modulus theorem implies
+\noindent we have $\abs[0]{ G_n(z)} \leq 1$ on the lines $\cbr{0} \times \intcc[0]{-C(n),C(n)}$, $\cbr{1} \times \intcc[0]{-C(n),C(n)}$. Thus $\abs[0]{ G_n(z) } \leq 1$ on $\partial R$. Since $\abs[0]{ G_n(z)}$ is continuous on $\overline{R}$, holomorphic in $R$ and $R$ is a bounded region, the maximum modulus theorem implies
 
 \begin{equation*}
-	\left| G_n(z)\right| \leq \sup\left\{ \left|G_n(z) \right| : z \in \partial R \right\} \leq 1
+	\abs[0]{ G_n(z)} \leq \sup\cbr[0]{\abs[0]{G_n(z) } : z \in \partial R} \leq 1
 \end{equation*}
 
-\noindent for every $z \in R$. Therefore $\left| G_n(z) \right| \leq 1$ on $\overline{R}$ and so $\left| G_n(z) \right| \leq 1$ on $\overline{S}$. Since inequalities are preserved by limits and the modulus is a continuous function, we have that $\left| G(z) \right| = \lim_{n \to \infty} \left| G_n(z) \right| \leq 1$ for $z \in \overline{S}$. We conclude by 
+\noindent for every $z \in R$. Therefore $\abs[0]{ G_n(z)} \leq 1$ on $\overline{R}$ and so $\abs[0]{ G_n(z)}\leq 1$ on $\overline{S}$. Since inequalities are preserved by limits and the modulus is a continuous function, we have that $\abs[0]{ G(z)} = \lim_{n \to \infty} \abs[0]{ G_n(z) } \leq 1$ for $z \in \overline{S}$. We conclude by 
 
 \begin{equation*}
-	\left| F(\theta + it) \right| = \left| G(\theta + it) \right| | B_0^{1 - \theta - it}B_1^{\theta + it}| \leq B_0^{1 - \theta} B_1^{\theta}
+	\abs[0]{ F(\theta + it) } = \abs[0]{ G(\theta + it)} \abs[0]{B_0^{1 - \theta - it}B_1^{\theta + it}} \leq B_0^{1 - \theta} B_1^{\theta}
 \end{equation*}
 
 \noindent whenever $0 < \theta < 1$, $t \in \mathbb{R}$.
 \end{proof}
 
 \subsection{The Riesz-Thorin Interpolation Theorem}
-For two measure spaces $\left( X,\mu \right)$, $\left( Y,\nu \right)$ let $\Sigma_X$ and $\Sigma_Y$ denote the set of all finitely simple functions on $X$, $Y$ respectively.
+Here we will answer our question raised in the introduction for the case where $T$ is a linear operator defined on the space of integrable simple functions. The theorem as it is in \cite[37]{grafakos:fourier:2014} will be slightly generalized to not necessarily $\sigma$-finite spaces in the manner of \cite[200]{folland:real_analysis:1999}, but not in the most general formulation possible where $T$ is an operator defined on a larger domain (for this see remark \ref{rem:extension}). To shorten the argumentation we will introduce some notation. For two measure spaces $\del[0]{ X,\mu }$, $\del[0]{ Y,\nu }$ let $\Sigma_X$ and $\Sigma_Y$ denote the set of all finitely simple functions on $X$, $Y$ respectively.
 
 \vspace{2mm}
 
 \begin{mdframed}
 	\begin{theorem}\emph{(Riesz-Thorin interpolation theorem)}
-		Suppose that $(X,\mu)$, $(Y,\nu)$ are measure spaces and $1 \leq p_0,p_1,q_0,q_1 \leq \infty$. If $q_0 = q_1 = \infty$, suppose also that $\nu$ is semifinite. Let $T$ be a linear operator defined on $\Sigma_X$ and taking values in the set of measurable functions on $Y$, such that for some $0 < M_0,M_1 < \infty$ the estimates 
+		Suppose that $\del{X,\mu}$, $\del{Y,\nu}$ are measure spaces and $1 \leq p_0,p_1,q_0,q_1 \leq \infty$. If $q_0 = q_1 = \infty$, suppose also that $\nu$ is semifinite. Let $T$ be a linear operator defined on $\Sigma_X$ and taking values in the set of measurable functions on $Y$, such that for some $0 < M_0,M_1 < \infty$ the estimates 
 
 		\begin{equation}
-			\left\|T(f)\right\|_{L^{q_0}} \leq M_0\left\|f\right\|_{L^{p_0}} \quad \text{and} \quad \left\|T(f)\right\|_{L^{q_1}} \leq M_1\left\|f\right\|_{L^{p_1}}
+			\norm[0]{T(f)}_{L^{q_0}} \leq M_0\norm[0]{f}_{L^{p_0}} \quad \text{and} \quad \norm[0]{T(f)}_{L^{q_1}} \leq M_1\norm[0]{f}_{L^{p_1}}
 			\label{hyp:Lq0Lq1}
 		\end{equation}
 
 		\noindent hold for all $f \in \Sigma_X$. Then for all $0 \leq \theta \leq 1$ we have
 
 		\begin{equation}
-			\left\|T(f)\right\|_{L^q} \leq M_0^{1 - \theta}M_1^\theta\left\|f\right\|_{L^p}
+			\norm[0]{T(f}_{L^q} \leq M_0^{1 - \theta}M_1^\theta\norm[0]{f}_{L^p}
 			\label{est:boundTf}
 		\end{equation}
 
@@ -167,7 +167,7 @@ For two measure spaces $\left( X,\mu \right)$, $\left( Y,\nu \right)$ let $\Sigm
 	The idea is to bound the quantity (see \cite[189]{folland:real_analysis:1999})
 	
 	\begin{equation*}
-		M_q\left( T(f) \right) = \sup\left\{ \left| \int_Y T(f)g \d \nu\right| : g \in \Sigma_Y, \left\| g\right\|_{L^{q'}} = 1\right\}
+		M_q( T(f)) = \sup\cbr{\abs{ \int_Y T(f)g \d \nu} : g \in \Sigma_Y, \norm[0]{ g}_{L^{q'}} = 1}
 	\end{equation*}
 
 	\noindent appropriately. If either $\theta = 0$ or $\theta = 1$, the estimate (\ref{est:boundTf}) follows directly from the hypotheses (\ref{hyp:Lq0Lq1}) on $T$. Thus we may assume \underline{$0 < \theta < 1$}. Furthermore, if $f \in \Sigma_X$, $\left\| f \right\|_{L^p} = 0$, then $f = 0$ $\mu$-a.e. and either one of the hypotheses on $T$ in (\ref{hyp:Lq0Lq1}) implies $T(f) = 0$ $\mu$-a.e. and thus the estimate (\ref{est:boundTf}) holds trivially. Therefore we can assume \underline{$\left\| f\right\|_{L^p} \neq 0$}. Fix $f \in \Sigma_X$, $g \in \Sigma_Y$ with representation
