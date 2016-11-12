@@ -1,36 +1,35 @@
 \section{The Real Method}
-A first important theorem on the subject of interpolation of $L^p$ spaces will be the so-called \emph{Marcinkiewicz Interpolation Theorem} which uses only real variables techniques for its proof (this stands in contrast to the complex variables techniques used for prooving the other interpolation theorems).
+In this last section we are concerned with one interpolation theorem which uses real variables techniques for its proof. This stands in contrast with the complex variables techniques used for the previous two theorems. Proofs by real variables techniques are often more straight forward and do not make use of advanced theorems. Therefore the proofs are likely longer and less natural.
 
 \subsection{The Marcinkiewicz Interpolation Theorem}
-This theorem applies to sublinear operators (aswell as for quasilinear operators by a slight change of the constant), which is in comparison to the linearity assumed by the other interpolation theorems more generally applicable.
+This theorem applies to sublinear operators (aswell as for quasilinear operators by a slight change of the constant) which is in comparison to the linearity assumed by the other interpolation theorems less restrictive on the nature of the operator in question. Unfortunately, this theorem will not provide an exact answer to the question raised in the introduction since the constant will differ as well as the continuity property of the estimate.
 
 \vspace{2mm}
 
 \begin{mdframed}
-	\begin{theorem}\emph{(The Marcinkiewicz Interpolation Theorem)}
-		Let $(X,\mu)$ be a $\sigma$-finite measure space, $(Y,\nu)$ another measure space and $0 < p_0 < p_1 \leqslant \infty$. Further let $T$ be a sublinear operator defined on
+	\begin{theorem}\emph{(The Marcinkiewicz interpolation theorem)}
+		Let $(X,\mu)$, $(Y,\nu)$ be two $\sigma$-finite measure spaces and $0 < p_0 < p_1 \leq \infty$. Further let $T$ be a sublinear operator defined on
 		
 		\begin{equation*}
-			L^{p_0} + L^{p_1} := \left\{ f_0 + f_1 : f_0 \in L^{p_0}(X,\mu), f_1 \in L^{p_1}(X,\mu) \right\}
+			L^{p_0} + L^{p_1} := \cbr[0]{ f_0 + f_1 : f_0 \in L^{p_0}(X,\mu), f_1 \in L^{p_1}(X,\mu)}
 		\end{equation*}
 		
-		and taking values in the space of measurable functions on $Y$. Assume that there exist $A_0,A_1 < \infty$ such that
-
-		\begin{align}
-			&\forall f \in L^{p_0}(X,\mu)~\|T(f)\|_{L^{p_0,\infty}} \leqslant A_0 \|f\|_{L^{p_0}}\label{hyp:fp_0}\\
-			&\forall f \in L^{p_1}(X,\mu)~\|T(f)\|_{L^{p_1,\infty}} \leqslant A_1 \|f\|_{L^{p_1}}\label{hyp:fp_1}
-		\end{align}
-
-		Then for all $p_0 < p < p_1$ and for all $f \in L^p(X,\mu)$ we have the estimate
+		\noindent and taking values in the space of measurable functions on $Y$. Assume that there exist $0 \leq A_0,A_1 < \infty$ such that
 
 		\begin{equation}
-			\left\|T(f)\right\|_{L^p} \leqslant A \left\|f\right\|_{L^p}
+			\norm[0]{T(f)}_{L^{p_0,\infty}} \leq A_0 \norm[0]{f}_{L^{p_0}} \qquad \text{and} \qquad \norm[0]{T(f)}_{L^{p_1,\infty}} \leq A_1 \norm[0]{f}_{L^{p_1}}\label{hyp:fp_0fp_1}
 		\end{equation}
 
-		where
+		\noindent for all $f \in L^{p_0}$, $f \in L^{p_1}$ respectively. Then for all $p_0 < p < p_1$ and for all $f \in L^p$ we have the estimate
 
 		\begin{equation}
-			A := 2\left( \frac{p}{p - p_0} + \frac{p}{p_1 - p} \right)^{1/p}A_0^{\frac{\frac{1}{p} - \frac{1}{p_1}}{\frac{1}{p_0}-\frac{1}{p_1}}}A_1^{\frac{\frac{1}{p_0}-\frac{1}{p}}{\frac{1}{p_0}-\frac{1}{p_1}}}
+			\norm[0]{T(f)}_{L^p} \leq A \norm[0]{f}_{L^p}
+		\end{equation}
+
+		\noindent where
+
+		\begin{equation}
+			A := 2\del[3]{ \frac{p}{p - p_0} + \frac{p}{p_1 - p} }^{1/p}A_0^{\frac{\frac{1}{p} - \frac{1}{p_1}}{\frac{1}{p_0}-\frac{1}{p_1}}}A_1^{\frac{\frac{1}{p_0}-\frac{1}{p}}{\frac{1}{p_0}-\frac{1}{p_1}}}.
 			\label{eq:constant}
 		\end{equation}
 	\end{theorem}
@@ -43,10 +42,10 @@ Let us first consider the case \underline{$p_1 < \infty$}. Fix $f \in L^p(X,\mu)
 	\begin{aligned}
 		f_0(x;\alpha,\delta) &:= \begin{cases}
 			f(x), & \vert f(x) \vert > \delta \alpha,\\
-			0, & \vert f(x)\vert \leqslant \delta \alpha.
+			0, & \vert f(x)\vert \leq \delta \alpha.
 		\end{cases}\\
 		f_1(x;\alpha,\delta) &:= \begin{cases}
-			f(x), & \vert f(x) \vert \leqslant \delta \alpha,\\
+			f(x), & \vert f(x) \vert \leq \delta \alpha,\\
 			0, & \vert f(x)\vert > \delta \alpha.
 		\end{cases}
 	\end{aligned}
@@ -67,33 +66,22 @@ Since $p_0 < p$ we have
 	\begin{aligned}
 		\|f_0\|^{p_0}_{L^{p_0}} &= \int_{X} \vert f_0\vert^{p_0} d\mu =\int_{X} \vert f \vert^{p_0} \cdot \chi_{\left\{\vert f\vert > \delta\alpha \right\}} d\mu \overset{(\dagger)}{=} \int_{\left\{\vert f \vert > \delta\alpha \right\}} \vert f \vert^{p_0}d\mu\\ 
 		&= \int_{\left\{\vert f\vert > \delta\alpha \right\}} \vert f \vert^p \vert f \vert^{p_0 - p} d\mu = \int_{\left\{\vert f\vert > \delta\alpha \right\}} \frac{\vert f \vert^p}{\vert f \vert^{p - p_0}} d\mu\\
-		&\leqslant \frac{1}{(\delta\alpha)^{p - p_0}} \int_{\left\{\vert f\vert > \delta\alpha \right\}} \vert f \vert^p d\mu = (\delta\alpha)^{p_0 - p} \int_{X} \vert f \vert^p \cdot \chi_{\left\{\vert f\vert > \delta\alpha \right\}} d\mu\\
-		& \leqslant (\delta\alpha)^{p_0 - p} \int_{X} \vert f \vert^p d\mu = (\delta\alpha)^{p_0 - p} \|f\|^p_{L^p} < \infty
+		&\leq \frac{1}{(\delta\alpha)^{p - p_0}} \int_{\left\{\vert f\vert > \delta\alpha \right\}} \vert f \vert^p d\mu = (\delta\alpha)^{p_0 - p} \int_{X} \vert f \vert^p \cdot \chi_{\left\{\vert f\vert > \delta\alpha \right\}} d\mu\\
+		& \leq (\delta\alpha)^{p_0 - p} \int_{X} \vert f \vert^p d\mu = (\delta\alpha)^{p_0 - p} \|f\|^p_{L^p} < \infty
 	\end{aligned}
 	\label{est:f0}
 \end{gather}
 
-Thus $f_0 \in L^{p_0}(X,\mu)$. Analogously it can be checked, that $f_1 \in L^{p_1}(X,\mu)$ by the estimate $\|f_1\|^{p_1}_{L^{p_1}} \leqslant (\delta\alpha)^{p_1 - p}\|f\|_{L^p}^p$.\\
+Thus $f_0 \in L^{p_0}(X,\mu)$. Analogously it can be checked, that $f_1 \in L^{p_1}(X,\mu)$ by the estimate $\|f_1\|^{p_1}_{L^{p_1}} \leq (\delta\alpha)^{p_1 - p}\|f\|_{L^p}^p$.\\
 
 	\emph{Proof of the equality $(\dagger)$.} Assume $\mu$ is defined on the $\sigma$-algebra $\mathcal{A}$. We have to proove that $\{\vert f \vert > \delta\alpha\} \in \mathcal{A}$\footnote{
 		For $Y \in \mathcal{A}$ the $\mu$-integral of $f: X \rightarrow \mathbb{C}$ over $Y$ is defined to be $\displaystyle \int_Y fd\mu := \int_X f \cdot \chi_Y d\mu$. For more details see \cite[135--136]{elstrodt:mass:2011}.}.
 		Since $f$ is complex-valued, we may write $f \equiv \mathrm{Re} f + i\mathrm{Im}f$ and thus $\vert f\vert^2 \equiv \mathrm{Re}^2 f + \mathrm{Im}^2f$. Since $f$ is measurable by hypothesis this implies that $ \mathrm{Re} f$ and $\mathrm{Im}f$ are measurable\footnote{For a proof see \cite[106]{elstrodt:mass:2011}}. Further for measurable real-valued functions $f,g: (X,\mathcal{A}) \rightarrow (\overline{\mathbb{R}},\overline{\mathfrak{B}})$\footnote{$\overline{\mathfrak{B}} := \sigma(\overline{\mathbb{R}})$ and $\overline{\mathfrak{B}} = \{B \cup E : B \in \mathfrak{B}, E \subseteq \{\pm \infty\}\}$.} 
 		the functions $f + g$ and $f \cdot g$ are measurable\footnote{For a proof see \cite[107]{elstrodt:mass:2011}.}
 		and thus $\vert f \vert^2$ is measurable. Hence $\{ \mathrm{Re}^2 f + \mathrm{Im}^2f > \lambda\} \in \mathcal{A}$\footnote{For a proof see \cite[105--106]{elstrodt:mass:2011}} for any $\lambda \in \mathbb{R}$. So especially for $\lambda := (\delta\alpha)^2$ we have $\{\vert f \vert > \delta\alpha\} \in \mathcal{A}$\footnote{This follows from the fact that $x < y$ if and only if $x^n < y^n$ for $n \in \mathbb{N}_{>0}$ and some real numbers $x,y > 0$ (see \cite[119]{zorich:analysis_I:2004}).}.
-	In a similar manner it can also be prooven that $\{\vert f\vert \leqslant \delta \alpha\} \in \mathcal{A}$. Let us next proove a useful lemma.
+	In a similar manner it can also be prooven that $\{\vert f\vert \leq \delta \alpha\} \in \mathcal{A}$. By Lemma \ref{lem:charfun} and the fact that $f \cdot g$ is measurable for two measurable functions $f,g: (X,\mathcal{A}) \rightarrow (\mathbb{C},\mathfrak{B}^2)$\footcite[107]{elstrodt:mass:2011}, $f_0$ and $f_1$ are measurable since $f_0 \equiv f \cdot \chi_{\{\vert f \vert > \delta \alpha\}}$ and $f_1 \equiv f \cdot \chi_{\{\vert f \vert \leq \delta \alpha\}}$.\\
 
-	\begin{lemma}
-		Let $A \in \powerset(X)$ and $\chi_A: (X,\mathcal{A}) \rightarrow (\mathbb{C},\mathfrak{B}^2)$ be the \emph{characteristic function of the set $A$}. Then $\chi_A$ is measurable if and only if $A$ is measurable.
-			\label{lem:charfun}
-	\end{lemma}
-		
-	\begin{proof}
-		Assume $\chi_A$ is measurable. Then $\mathrm{Re}\chi_A$ and $\mathrm{Im}\chi_A$ are measurable. Especially for $0 < \lambda < 1$ we have that $\{\mathrm{Re}\chi_A > \lambda\} = A \in \mathcal{A}$. Conversly, assume $A$ is measurable. For $\lambda < 0$ we have $\{\mathrm{Re}\chi_A > \lambda\} = X \in \mathcal{A}$, $\lambda \in [0,1[$, $\{\mathrm{Re}\chi_A > \lambda\} = A \in \mathcal{A}$ and $\{\mathrm{Re}\chi_A > \lambda\} = \emptyset \in \mathcal{A}$ for $\lambda \geqslant 1$. Since $\mathrm{Im}\chi_A \equiv 0$ we have $\{\mathrm{Im}\chi_A > \lambda \} = X \in \mathcal{A}$ if $\lambda < 0$ and $\{\mathrm{Im}\chi_A > \lambda\} = \emptyset \in \mathcal{A}$ if $\lambda \geqslant 0$.   
-	\end{proof}
-
-	By Lemma \ref{lem:charfun} and the fact that $f \cdot g$ is measurable for two measurable functions $f,g: (X,\mathcal{A}) \rightarrow (\mathbb{C},\mathfrak{B}^2)$\footcite[107]{elstrodt:mass:2011}, $f_0$ and $f_1$ are measurable since $f_0 \equiv f \cdot \chi_{\{\vert f \vert > \delta \alpha\}}$ and $f_1 \equiv f \cdot \chi_{\{\vert f \vert \leqslant \delta \alpha\}}$.\\
-
-	One subtility is left to clear: the $\mu$-integrability of either $\vert f_1\vert^{p_0}$ or $\vert f_1 \vert^{p_1}$ requires that $\vert f_0 \vert^{p_0}$ and $\vert f_1 \vert^{p_1}$ are measurable functions. By the fact that any continuous map $g: (X,d_X) \rightarrow (Y,d_Y)$ between metric spaces is Borel-measurable (see \cite[86]{elstrodt:mass:2011}) and that the composition of measurable functions is again measurable (see \cite[87]{elstrodt:mass:2011}), the measurability of either $f_0$ or $f_1$ follows by $\vert f_0 \vert^{p_0} \equiv \cdot^{p_0} \circ \vert f \cdot \chi_{\{\vert f\vert > \delta\alpha\}}\vert$ and $\vert f_1 \vert^{p_1} \equiv \cdot^{p_1} \circ \vert f \cdot \chi_{\{\vert f \vert \leqslant \delta \alpha\}}\vert$ by stipulating $\cdot^{p}: (\mathbb{R}_{\geqslant 0},\vert \cdot \vert) \rightarrow (\mathbb{C},\vert \cdot \vert)$, $x^{p} := \exp(p \log(x))$ for $p > 0$ and $x \in \mathbb{R}_{> 0}$ and $x^p := 0$ if $x = 0$.
+	One subtility is left to clear: the $\mu$-integrability of either $\vert f_1\vert^{p_0}$ or $\vert f_1 \vert^{p_1}$ requires that $\vert f_0 \vert^{p_0}$ and $\vert f_1 \vert^{p_1}$ are measurable functions. By the fact that any continuous map $g: (X,d_X) \rightarrow (Y,d_Y)$ between metric spaces is Borel-measurable (see \cite[86]{elstrodt:mass:2011}) and that the composition of measurable functions is again measurable (see \cite[87]{elstrodt:mass:2011}), the measurability of either $f_0$ or $f_1$ follows by $\vert f_0 \vert^{p_0} \equiv \cdot^{p_0} \circ \vert f \cdot \chi_{\{\vert f\vert > \delta\alpha\}}\vert$ and $\vert f_1 \vert^{p_1} \equiv \cdot^{p_1} \circ \vert f \cdot \chi_{\{\vert f \vert \leq \delta \alpha\}}\vert$ by stipulating $\cdot^{p}: (\mathbb{R}_{\geq 0},\vert \cdot \vert) \rightarrow (\mathbb{C},\vert \cdot \vert)$, $x^{p} := \exp(p \log(x))$ for $p > 0$ and $x \in \mathbb{R}_{> 0}$ and $x^p := 0$ if $x = 0$.
 \end{proof}
 
 By lemma (\ref{lem:f0f1}) we therefore have $f \equiv f_0 + f_1 \in L^{p_0} + L^{p_1}$. 
@@ -102,13 +90,13 @@ By lemma (\ref{lem:f0f1}) we therefore have $f \equiv f_0 + f_1 \in L^{p_0} + L^
 	For fixed $\alpha > 0$, the distribution function $d_{T(f)}(\alpha)$ obeys an upper bound of the form
 
 	\begin{equation*}
-		d_{T(f)}(\alpha) \leqslant  \left(\frac{A_0}{\alpha/2}\right)^{p_0} \left\|f_0\right\|^{p_0}_{L^{p_0}} + \left(\frac{A_1}{\alpha/2}\right)^{p_1} \left\|f_1\right\|^{p_1}_{L^{p_1}}
+		d_{T(f)}(\alpha) \leq  \left(\frac{A_0}{\alpha/2}\right)^{p_0} \left\|f_0\right\|^{p_0}_{L^{p_0}} + \left(\frac{A_1}{\alpha/2}\right)^{p_1} \left\|f_1\right\|^{p_1}_{L^{p_1}}
 	\end{equation*}
 \end{lemma}
 
 \begin{proof}
-Since $T$ is a sublinear operator we have $\vert T(f) \vert = \vert T(f_0 + f_1) \vert \leqslant \vert T(f_0) \vert + \vert T(f_1)\vert$. Thus for any $y \in Y$ with $\vert T(f)(y) \vert > \alpha$ we therefore have either $\vert T(f_0)(y) \vert > \alpha/2$ or $\vert T(f_1)(y) \vert > \alpha/2$ 
-		\footnote{Without loss of generality assume $\vert T(f_0)(y) \vert \leqslant \vert T(f_1)(y) \vert $. Then we have $\alpha < \vert T(f)(y)\vert \leqslant \vert T(f_0)(y) \vert + \vert T(f_1)(y)\vert \leqslant 2\vert T(f_1)(y)\vert$ (this is possible since $\mathbb{R}$ is an ordered field).}
+Since $T$ is a sublinear operator we have $\vert T(f) \vert = \vert T(f_0 + f_1) \vert \leq \vert T(f_0) \vert + \vert T(f_1)\vert$. Thus for any $y \in Y$ with $\vert T(f)(y) \vert > \alpha$ we therefore have either $\vert T(f_0)(y) \vert > \alpha/2$ or $\vert T(f_1)(y) \vert > \alpha/2$ 
+		\footnote{Without loss of generality assume $\vert T(f_0)(y) \vert \leq \vert T(f_1)(y) \vert $. Then we have $\alpha < \vert T(f)(y)\vert \leq \vert T(f_0)(y) \vert + \vert T(f_1)(y)\vert \leq 2\vert T(f_1)(y)\vert$ (this is possible since $\mathbb{R}$ is an ordered field).}
 		. Hence
 
 \begin{equation*}
@@ -120,8 +108,8 @@ and so by the monotonicity and subadditivity property of the measure $\mu$ we ha
 \begin{gather}
 	\begin{aligned}
 	d_{T(f)}(\alpha) &= \mu(\{\vert T(f)\vert > \alpha\})\\
-	&\leqslant \mu(\{\vert T(f_0)\vert > \alpha/2 \} \cup \{\vert T(f_1)\vert > \alpha/2 \})\\
-	&\leqslant \mu(\{\vert T(f_0) \vert > \alpha/2 \}) + \mu(\{\vert T(f_1)\vert > \alpha/2 \})\\
+	&\leq \mu(\{\vert T(f_0)\vert > \alpha/2 \} \cup \{\vert T(f_1)\vert > \alpha/2 \})\\
+	&\leq \mu(\{\vert T(f_0) \vert > \alpha/2 \}) + \mu(\{\vert T(f_1)\vert > \alpha/2 \})\\
 	&= d_{T(f_0)}(\alpha/2) + d_{T(f_1)}(\alpha/2)
 	\label{est:T}
 	\end{aligned}
@@ -132,14 +120,14 @@ Now by hypothesis (\ref{hyp:fp_0}) we can estimate $d_{T(f_0)}(\alpha/2)$ as fol
 \begin{gather}
 	\begin{aligned}
 		d_{T(f_0)}(\alpha/2) &= \left(\frac{\alpha/2}{\alpha/2}\right)^{p_0} d_{T(f_0)}(\alpha/2)\\
-		&\leqslant \left(\frac{1}{\alpha/2}\right)^{p_0} \left[\sup\left\{ \gamma d_{T(f_0)}(\gamma)^{1/p_0}: \gamma > 0\right\}\right]^{p_0}\\
+		&\leq \left(\frac{1}{\alpha/2}\right)^{p_0} \left[\sup\left\{ \gamma d_{T(f_0)}(\gamma)^{1/p_0}: \gamma > 0\right\}\right]^{p_0}\\
 	 & = \left(\frac{1}{\alpha/2}\right)^{p_0} \|T(f_0)\|^{p_0}_{L^{p_0,\infty}}\\
-	 & \leqslant \left(\frac{A_0}{\alpha/2}\right)^{p_0} \|f_0\|^{p_0}_{L^{p_0}}
+	 & \leq \left(\frac{A_0}{\alpha/2}\right)^{p_0} \|f_0\|^{p_0}_{L^{p_0}}
 	\label{est:p_0}
 	\end{aligned}
 \end{gather}
 
-Analogously, we get  $d_{T(f_1)}(\alpha/2) \leqslant \left(\frac{A_1}{\alpha/2}\right)^{p_1} \|f_1\|^{p_1}_{L^{p_1}}\label{est:p_1}$ by hypothesis (\ref{hyp:fp_1}).
+Analogously, we get  $d_{T(f_1)}(\alpha/2) \leq \left(\frac{A_1}{\alpha/2}\right)^{p_1} \|f_1\|^{p_1}_{L^{p_1}}\label{est:p_1}$ by hypothesis (\ref{hyp:fp_1}).
 \end{proof}
 
 By
@@ -148,7 +136,7 @@ By
 	\begin{aligned}
 		\int_0^{\frac{1}{\delta}\left| f\right|}\alpha^{p-p_0-1} d\lambda = 
 			\begin{cases}
-				\frac{1}{p-p_0}\frac{1}{\delta^{p-p_0}}\left| f \right|^{p - p_0}, & p \geqslant p_0 + 1\\
+				\frac{1}{p-p_0}\frac{1}{\delta^{p-p_0}}\left| f \right|^{p - p_0}, & p \geq p_0 + 1\\
 				=\lim_{\omega \to 0^+} \int_\omega^{\frac{1}{\delta}\left| f\right|}\alpha^{p-p_0-1} d\lambda\\
 				= \lim_{\omega \to 0^+}\left[\frac{1}{p-p_0}\alpha^{p - p_0}\right]_\omega^{\frac{1}{\delta}\left| f\right|}\\
 				= \frac{1}{p-p_0}\left[\frac{1}{\delta^{p-p_0}}\left| f \right|^{p - p_0} - \lim_{\omega \to 0^+} \omega^{p-p_0}\right]\\
@@ -172,8 +160,8 @@ and the representation $\displaystyle \left\|f\right\|^p_{L^p} = p \int_0^{\inft
 \begin{gather}
 	\begin{aligned}
 		\left\|T(f)\right\|^p_{L^p} = &~p\int_0^{\infty}\alpha^{p-1}d_{T(f)} d\lambda\\
-		\leqslant &~p\left(2A_0\right)^{p_0}\int_0^{\infty}\alpha^{p-p_0-1} \int_{\{\left| f \right| > \delta \alpha\}} \left| f\right|^{p_0}d\mu d\lambda\\
-		&+ p(2A_1)^{p_1}\int_0^{\infty}\alpha^{p-p_1-1} \int_{\{\left| f \right| \leqslant \delta \alpha\}} \left| f \right|^{p_1}d\mu d\lambda\\
+		\leq &~p\left(2A_0\right)^{p_0}\int_0^{\infty}\alpha^{p-p_0-1} \int_{\{\left| f \right| > \delta \alpha\}} \left| f\right|^{p_0}d\mu d\lambda\\
+		&+ p(2A_1)^{p_1}\int_0^{\infty}\alpha^{p-p_1-1} \int_{\{\left| f \right| \leq \delta \alpha\}} \left| f \right|^{p_1}d\mu d\lambda\\
 		= &~p\left(2A_0\right)^{p_0}\int_{\{\left| f \right| > 0\}} \left| f \right|^{p_0} \int_0^{\frac{1}{\delta}\left| f\right|}\alpha^{p-p_0-1} d\lambda d\mu\\
 		&+ p\left(2A_0\right)^{p_0}\int_{\{\left| f \right| = 0\}} \left| f \right|^{p_0} \int_0^{\frac{1}{\delta}\left| f\right|}\alpha^{p-p_0-1} d\lambda d\mu\\
 		&+ p\left(2A_1\right)^{p_1}\int_X \left| f\right|^{p_1} \int_{\frac{1}{\delta}\left| f\right|}^{\infty}\alpha^{p - p_1 - 1} d\lambda d\mu\\
@@ -196,7 +184,7 @@ and the representation $\displaystyle \left\|f\right\|^p_{L^p} = p \int_0^{\inft
 
 		\begin{gather}
 			\begin{aligned}
-				\|T(f)\|_{L^p}^p &\leqslant p\left( \frac{(2A_0)^{p_0}}{p - p_0}\frac{2^{p - p_0}A_1^\frac{p_1(p-p_0)}{p_1-p_0}}{A_0^\frac{p_0(p-p_0)}{p_1 - p_0}} + \frac{(2A_1)^{p_1}}{p_1 - p} \frac{A_0^\frac{p_0(p_1 - p)}{p_1 - p_0}}{2^{p_1 - p}A_1^\frac{p_1(p_1 - p)}{p_1 - p_0}} \right)\|f\|_{L^p}^p\\
+				\|T(f)\|_{L^p}^p &\leq p\left( \frac{(2A_0)^{p_0}}{p - p_0}\frac{2^{p - p_0}A_1^\frac{p_1(p-p_0)}{p_1-p_0}}{A_0^\frac{p_0(p-p_0)}{p_1 - p_0}} + \frac{(2A_1)^{p_1}}{p_1 - p} \frac{A_0^\frac{p_0(p_1 - p)}{p_1 - p_0}}{2^{p_1 - p}A_1^\frac{p_1(p_1 - p)}{p_1 - p_0}} \right)\|f\|_{L^p}^p\\
 				&=  2^pp\left( \frac{A_0^\frac{p_0(p_1 - p)}{p_1 - p_0}A_1^\frac{p_1(p-p_0)}{p_1-p_0}}{p - p_0} + \frac{A_0^\frac{p_0(p_1 - p)}{p_1 - p_0}A_1^\frac{p_1(p - p_0)}{p_1 - p_0}}{p_1- p} \right)\|f\|_{L^p}^p\\
 			\end{aligned}
 		\end{gather}
@@ -205,7 +193,7 @@ and the representation $\displaystyle \left\|f\right\|^p_{L^p} = p \int_0^{\inft
 
 		\begin{gather}
 			\begin{aligned}
-				\|T(f)\|_{L^p} &\leqslant 2\left( \frac{p}{p - p_0} + \frac{p}{p_1- p} \right)^{1/p} A_0^\frac{p_0(p_1 - p)}{p(p_1 - p_0)}A_1^\frac{p_1(p - p_0)}{p(p_1 - p_0)}\|f\|_{L^p}\\
+				\|T(f)\|_{L^p} &\leq 2\left( \frac{p}{p - p_0} + \frac{p}{p_1- p} \right)^{1/p} A_0^\frac{p_0(p_1 - p)}{p(p_1 - p_0)}A_1^\frac{p_1(p - p_0)}{p(p_1 - p_0)}\|f\|_{L^p}\\
 				&= 2\left( \frac{p}{p - p_0} + \frac{p}{p_1- p} \right)^{1/p} A_0^{\frac{p_0(p_1 - p)}{p(p_1 - p_0)}\frac{p_1}{p_1}}A_1^{\frac{p_1(p - p_0)}{p(p_1 - p_0)}\frac{p_0}{p_0}}\|f\|_{L^p}\\
 				&= 2\left( \frac{p}{p - p_0} + \frac{p}{p_1- p} \right)^{1/p} A_0^{\frac{\frac{p_1 - p}{pp_1}}{\frac{p_1 - p_0}{p_0p_1}}}A_1^{\frac{\frac{p - p_0}{p_0p}}{\frac{p_1 - p_0}{p_0p_1}}}\|f\|_{L^p}\\
 				&= 2\left( \frac{p}{p - p_0} + \frac{p}{p_1- p} \right)^{1/p} A_0^{\frac{\frac{1}{p} - \frac{1}{p_1}}{\frac{1}{p_0} - \frac{1}{p_1}}}A_1^{\frac{\frac{1}{p_0} - \frac{1}{p}}{\frac{1}{p_0} - \frac{1}{p_1}}}\|f\|_{L^p}
@@ -214,19 +202,19 @@ and the representation $\displaystyle \left\|f\right\|^p_{L^p} = p \int_0^{\inft
 		Assume \underline{$p_1 = \infty$}. We again use the cut-off functions defined in (\ref{eq:cut_off}) to decompose $f$.  Since $\{\vert f_1\vert > \delta\alpha \} = \emptyset$, we have 
 
 \begin{equation*}
-	\|T(f_1)\|_{L^\infty} \leqslant A_1 \|f_1\|_{L^\infty} = A_1 \inf \left\{B > 0: \mu(\{\vert f_1 \vert > B\}) = 0 \right\} \leqslant A_1\delta\alpha = \alpha/2
+	\|T(f_1)\|_{L^\infty} \leq A_1 \|f_1\|_{L^\infty} = A_1 \inf \left\{B > 0: \mu(\{\vert f_1 \vert > B\}) = 0 \right\} \leq A_1\delta\alpha = \alpha/2
 \end{equation*}
 
-Provided we stipulate $\delta := 1/(2A_1)$. Therefore the set $\{\vert T(f_1) \vert > \alpha/2\}$ has measure zero (this is immediate since $\|T(f_1)\|_{L^\infty} =  \inf \left\{B > 0: \mu(\{\vert T(f_1) \vert > B\}) = 0 \right\} \leqslant \alpha/2 $ and any subset of a set with measure zero has itself measure zero). Thus similar to part \textbf{b.} of \textbf{(i.)} we get $d_{T(f)}(\alpha) \leqslant d_{T(f_0)}(\alpha/2)$.
+Provided we stipulate $\delta := 1/(2A_1)$. Therefore the set $\{\vert T(f_1) \vert > \alpha/2\}$ has measure zero (this is immediate since $\|T(f_1)\|_{L^\infty} =  \inf \left\{B > 0: \mu(\{\vert T(f_1) \vert > B\}) = 0 \right\} \leq \alpha/2 $ and any subset of a set with measure zero has itself measure zero). Thus similar to part \textbf{b.} of \textbf{(i.)} we get $d_{T(f)}(\alpha) \leq d_{T(f_0)}(\alpha/2)$.
 
-	Hypothesis (\ref{hyp:fp_0}) yields the estimate $\displaystyle d_{T(f_0)}(\alpha/2) \leqslant \left(\frac{A_0}{\alpha/2}\right)^{p_0} \int_{\{2A_1\vert f \vert > \alpha\}} \vert f \vert^{p_0}d\mu$.
+	Hypothesis (\ref{hyp:fp_0}) yields the estimate $\displaystyle d_{T(f_0)}(\alpha/2) \leq \left(\frac{A_0}{\alpha/2}\right)^{p_0} \int_{\{2A_1\vert f \vert > \alpha\}} \vert f \vert^{p_0}d\mu$.
 
 	Thus by \textbf{a.} and \textbf{b.}
 
 	\begin{gather}
 		\begin{aligned}
 			\|T(f)\|_{L^p}^p &= p \int_0^{\infty} \alpha^{p-1}d_{T(f)} d\lambda\\
-			&\leqslant p (2A_0)^{p_0} \int_0^{\infty} \alpha^{p-p_0-1} \int_{\{2A_1\vert f \vert > \alpha\}} \vert f \vert^{p_0}d\mu d\lambda\\
+			&\leq p (2A_0)^{p_0} \int_0^{\infty} \alpha^{p-p_0-1} \int_{\{2A_1\vert f \vert > \alpha\}} \vert f \vert^{p_0}d\mu d\lambda\\
 			&= p(2A_0)^{p_0} \int_X \vert f\vert^{p_0} \int_0^{2A_1\vert f \vert} \alpha^{p - p_0 - 1}d\lambda d\mu\\
 			&= \frac{2^ppA_0^{p_0}A_1^{p - p_0}}{p - p_0} \int_X \vert f\vert^{p} d\mu\\
 			&= \frac{2^ppA_0^{p_0}A_1^{p - p_0}}{p - p_0} \|f\|_{L^p}^p
