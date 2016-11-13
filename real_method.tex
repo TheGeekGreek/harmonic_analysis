@@ -145,9 +145,9 @@ By
 		\int_0^{\frac{1}{\delta}\abs[0]{ f}}\alpha^{p-p_0-1} \d\alpha = 
 			\begin{cases}
 				\frac{1}{p-p_0}\frac{1}{\delta^{p-p_0}}\abs[0]{ f }^{p - p_0}, & p \geq p_0 + 1\\
-				\lim_{\omega \nearrow 0} \int_\omega^{\frac{1}{\delta}\abs[0]{ f}}\alpha^{p-p_0-1} \d\alpha\\
-				= \lim_{\omega \nearrow 0}\sbr{\frac{1}{p-p_0}\alpha^{p - p_0}}_\omega^{\frac{1}{\delta}\abs[0]{ f}}\\
-				= \frac{1}{p-p_0}\sbr{\frac{1}{\delta^{p-p_0}}\abs[0]{ f }^{p - p_0} - \lim_{\omega \nearrow 0} \omega^{p-p_0}}\\
+				\lim_{\omega \searrow 0} \int_\omega^{\frac{1}{\delta}\abs[0]{ f}}\alpha^{p-p_0-1} \d\alpha\\
+				= \lim_{\omega \searrow 0}\sbr{\frac{1}{p-p_0}\alpha^{p - p_0}}_\omega^{\frac{1}{\delta}\abs[0]{ f}}\\
+				= \frac{1}{p-p_0}\sbr{\frac{1}{\delta^{p-p_0}}\abs[0]{ f }^{p - p_0} - \lim_{\omega \searrow 0} \omega^{p-p_0}}\\
 				= \frac{1}{p-p_0}\frac{1}{\delta^{p-p_0}} \abs[0]{ f}^{p - p_0}, & p_0 < p < p_0 + 1
 			\end{cases}
 	\end{aligned}
