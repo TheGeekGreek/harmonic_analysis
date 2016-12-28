@@ -78,17 +78,17 @@ This lemma is inspired by a lemma originally proposed by I.I.Hirschman. I will s
 \end{lemma}
 
 \begin{proof}
-	Let us consider the topological space $\del{ \Omega, \abs[0]{ \cdot}}$. Let $z_0 \in \Omega$ so such that $f(z_0) \neq 0$. Then $\log\abs[0]{ f}$ is continuous as a composition of continuous functions. If $M > f(z_0)$, then $M - \log\abs[0]{ f(z_0)} > 0$ and thus there exists some $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\abs[0]{ \log\abs[0]{ f(z)} - \log\abs[0]{ f(z_0)}} < M- \log\abs[0]{ f(z_0)}$ or equivalently $\log\abs[0]{ f(z)} < M$. Now let $z_0 \in \Omega$ so such that $f(z_0) = 0$. By convention $\log\abs[0]{ f(z_0)} = -\infty$. Furthermore, $M > \log\abs[0]{ f(z_0)}$ for any $M \in \mathbb{R}$. The condition $M > \log\abs[0]{ f(z)}$ is equivalent to $\abs[0]{ f(z)} < e^M$. But $f(z_0) = 0$ and so
-
+	Consider $\Omega$ equipped with the metric topology induced by the restriction of the standard metric on $\mathbb{C}$ (see \cite[21]{lee:topological_manifolds:2011}). Let $z_0 \in \Omega$ so, such that $f(z_0) \neq 0$. Then $\log\abs[0]{ f}$ is continuous at $z_0$ as a composition of continuous functions. Thus if $M > \log\abs[0]{f(z_0)}$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies 
+	
 	\begin{equation*}
-		\abs[0]{ f(z)} = \abs[0]{ f(z) - f(z_0)}< e^M
+		\abs[0]{ \log\abs[0]{ f(z)} - \log\abs[0]{ f(z_0)}} < M- \log\abs[0]{ f(z_0)}
 	\end{equation*}
 
-	Since $f$ is continuous at $z_0$ and $e^M > 0$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\abs[0]{ f(z)} < e^M$.
+	\noindent or equivalently $\log\abs[0]{ f(z)} < M$. Now let $z_0 \in \Omega$ so, such that $f(z_0) = 0$. By convention $\log\abs[0]{ f(z_0)} := -\infty$. Furthermore, $M > \log\abs[0]{ f(z_0)}$ for any $M \in \mathbb{R}$. Obviously, the condition $M > \log\abs[0]{ f(z)}$ is equivalent to $\abs[0]{ f(z)} < e^M$. By the continuity of $f$ on $\Omega$ we find $\delta > 0$ such that $z \in B_\delta(z_0)$ implies $\abs[0]{f(z) - f(z_0)} = \abs[0]{f(z)} < e^M$.
 \end{proof}
 
 \begin{lemma}
-	The mapping $\Phi: \mathbb{R} \to \intoo{-\pi,0}$ defined by $\Phi(t) := -i\log( h^{-1}(it))$ is a $C^1$-Diffeomorphism with $\abs[0]{ D\Phi(t)} = \pi \sech(\pi t)$. In an analogous manner we have that $\Psi: \mathbb{R} \to \intoo{0,\pi}$, $\Psi(t) := -i\log( h^{-1}(1 + it) )$ is a $C^1$-Diffeomorphism with $\abs[0]{ D\Psi(t)} = \pi \sech(\pi t)$.
+	The mapping $\Phi: \mathbb{R} \to \intoo{-\pi,0}$ defined by $\Phi(t) := -i\log( h^{-1}(it))$ is a $C^1$-diffeomorphism with $\abs[0]{ D\Phi(t)} = \pi \sech(\pi t)$. In an analogous manner we have that $\Psi: \mathbb{R} \to \intoo{0,\pi}$, $\Psi(t) := -i\log( h^{-1}(1 + it) )$ is a $C^1$-diffeomorphism with $\abs[0]{ D\Psi(t)} = \pi \sech(\pi t)$.
 	\label{lem:change_of_variables}
 \end{lemma}
 
